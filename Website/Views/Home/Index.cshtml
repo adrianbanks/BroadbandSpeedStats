@@ -11,10 +11,13 @@
 
     @if (Model != null)
     {
-        @:Date: @Model.DateTime<br/>
-        @:Ping: @Model.Ping<br>
-        @:Upload: @Model.Upload<br/>
-        @:Download: @Model.Download<br/>
+        @:Date: @Model.Timestamp
+        <br/>
+        @:Ping: @Model.Ping ms
+        <br />
+        @:Download: @(Model.Download / 1000000) Mbit/s
+        <br />
+        @:Upload: @(Model.Upload / 1000000) Mbit/s
     }
 </body>
 </html>
