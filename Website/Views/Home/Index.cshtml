@@ -1,0 +1,20 @@
+﻿@model BroadbandSpeedStats.Models.SpeedTestResultRequest
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Broadband speed results</title>
+</head>
+
+<body>
+<h1>Broadband speed results</h1>
+
+    @if (Model != null)
+    {
+        @:Date: @Model.DateTime<br/>
+        @:Ping: @Model.Ping<br>
+        @:Upload: @Model.Upload<br/>
+        @:Download: @Model.Download<br/>
+    }
+</body>
+</html>
