@@ -2,6 +2,37 @@
 
 <h1 class="page-header">Latest results</h1>
 
+@if (Model == null)
+{
+    <button onclick="sendDummyData()">Send dummy data</button>
+    <script>
+        function sendDummyData() {
+            $.post('/api/RecordSpeedTest',
+            {
+                "download": 42318510.91846837,
+                "timestamp": "2017-02-05T21:13:59.805962",
+                "ping": 30.934,
+                "upload": 4862065.525056035,
+                "server": {
+                    "latency": 30.934,
+                    "name": "Luton",
+                    "url": "http://lutn-speedtest-1.server.virginmedia.net/speedtest/upload.php",
+                    "country": "Great Britain",
+                    "lon": "-0.4200",
+                    "cc": "GB",
+                    "host": "lutn-speedtest-1.server.virginmedia.net:8080",
+                    "sponsor": "Virgin Media",
+                    "lat": "51.8787",
+                    "id": "3697",
+                    "d": 54.74483082365162
+                }
+            }).done(function() {
+                location.reload();
+            });
+        }
+    </script>
+}
+
 @if (Model != null)
 {
     <table class="table table-striped table-condensed">
