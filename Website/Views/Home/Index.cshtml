@@ -31,4 +31,82 @@
         </td></tr>
         </tbody>
     </table>
+
+    <div class="row">
+        <div id="downloadSpeedGauge" class="col-md-6"></div>
+        <div id="uploadSpeedGauge" class="col-md-6"></div>
+    </div>
+}
+
+@section pageScripts
+{
+    <script>
+        var g = new JustGage({
+            id: "downloadSpeedGauge",
+            value: @(Model?.Download / 1000000 ?? 0),
+            min: 0,
+            max: 70,
+            title: "Download speed",
+            label: "Mbit/s",
+            customSectors: [{
+                color : "#ff3b30",
+                lo : 0,
+                hi : 30
+            },{
+                color : "#f9c802",
+                lo : 30,
+                hi : 50
+            },{
+                color : "#43bf58",
+                lo : 50,
+                hi : 70
+            }],
+            counter: true,
+            pointer: true,
+            pointerOptions: {
+                toplength: -5,
+                bottomlength: 5,
+                bottomwidth: 5,
+                color: '#8e8e93',
+                stroke: '#ffffff',
+                stroke_width: 1,
+                stroke_linecap: 'round'
+            },
+            relativeGaugeSize: true
+        });
+
+        var g = new JustGage({
+            id: "uploadSpeedGauge",
+            value: @(Model?.Upload / 1000000 ?? 0),
+            min: 0,
+            max: 5,
+            title: "Upload speed",
+            label: "Mbit/s",
+            customSectors: [{
+                color : "#ff3b30",
+                lo : 0,
+                hi : 1
+            },{
+                color : "#f9c802",
+                lo : 1,
+                hi : 2
+            },{
+                color : "#43bf58",
+                lo : 2,
+                hi : 5
+            }],
+            counter: true,
+            pointer: true,
+            pointerOptions: {
+                toplength: -5,
+                bottomlength: 5,
+                bottomwidth: 5,
+                color: '#8e8e93',
+                stroke: '#ffffff',
+                stroke_width: 1,
+                stroke_linecap: 'round'
+            },
+            relativeGaugeSize: true
+        });
+    </script>
 }
