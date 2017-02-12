@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BroadbandSpeedStats</RootNamespace>
-    <AssemblyName>BroadbandSpeedStats</AssemblyName>
+    <RootNamespace>BroadbandSpeedStats.Web</RootNamespace>
+    <AssemblyName>BroadbandSpeedStats.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -156,6 +156,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Database.Migrations\Database.Migrations.csproj">
+      <Project>{3919F3D0-B514-49B0-BFE5-CDCAA7B2DC22}</Project>
+      <Name>Database.Migrations</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
