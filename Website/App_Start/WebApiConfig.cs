@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace BroadbandSpeedStats
+namespace BroadbandSpeedStats.Web
 {
     public static class WebApiConfig
     {

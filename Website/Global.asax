@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="BroadbandSpeedStats.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="BroadbandSpeedStats.Web.Global" Language="C#" %>

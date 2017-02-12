@@ -1,6 +1,6 @@
-﻿using BroadbandSpeedStats.Models;
+﻿using BroadbandSpeedStats.Web.Models;
 
-namespace BroadbandSpeedStats.DataAccess
+namespace BroadbandSpeedStats.Web.DataAccess
 {
     public static class Store
     {

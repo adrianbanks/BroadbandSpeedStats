@@ -1,10 +1,10 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using BroadbandSpeedStats.DataAccess;
-using BroadbandSpeedStats.Models;
+using BroadbandSpeedStats.Web.DataAccess;
+using BroadbandSpeedStats.Web.Models;
 
-namespace BroadbandSpeedStats.Controllers
+namespace BroadbandSpeedStats.Web.Controllers
 {
     public class RecordSpeedTestController : ApiController
     {

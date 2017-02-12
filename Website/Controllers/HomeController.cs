@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using BroadbandSpeedStats.DataAccess;
+using BroadbandSpeedStats.Web.DataAccess;
 
-namespace BroadbandSpeedStats.Controllers
+namespace BroadbandSpeedStats.Web.Controllers
 {
     public class HomeController : Controller
     {

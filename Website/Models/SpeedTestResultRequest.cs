@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BroadbandSpeedStats.Models
+namespace BroadbandSpeedStats.Web.Models
 {
     public class SpeedTestResultRequest
     {
