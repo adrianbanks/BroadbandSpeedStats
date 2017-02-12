@@ -1,36 +1,10 @@
-﻿@model BroadbandSpeedStats.Web.Models.SpeedTestResultRequest
+﻿@model BroadbandSpeedStats.Database.Models.TestRunResult
 
 <h1 class="page-header">Latest results</h1>
 
 @if (Model == null)
 {
-    <button onclick="sendDummyData()">Send dummy data</button>
-    <script>
-        function sendDummyData() {
-            $.post('/api/RecordSpeedTest',
-            {
-                "download": 42318510.91846837,
-                "timestamp": "2017-02-05T21:13:59.805962",
-                "ping": 30.934,
-                "upload": 4862065.525056035,
-                "server": {
-                    "latency": 30.934,
-                    "name": "Luton",
-                    "url": "http://lutn-speedtest-1.server.virginmedia.net/speedtest/upload.php",
-                    "country": "Great Britain",
-                    "lon": "-0.4200",
-                    "cc": "GB",
-                    "host": "lutn-speedtest-1.server.virginmedia.net:8080",
-                    "sponsor": "Virgin Media",
-                    "lat": "51.8787",
-                    "id": "3697",
-                    "d": 54.74483082365162
-                }
-            }).done(function() {
-                location.reload();
-            });
-        }
-    </script>
+    <text>No tests have been run</text>
 }
 
 @if (Model != null)
@@ -46,19 +20,19 @@
         <tr><td>
             Ping:
         </td><td>
-            @Model.Ping ms
+            @Model.PingTime ms
         </td></tr>
 
         <tr><td>
             Download:
         </td><td>
-            @(Model.Download / 1000000) Mbit/s
+            @(Model.DownloadSpeed / 1000000) Mbit/s
         </td></tr>
 
         <tr><td>
             Upload:
         </td><td>
-            @(Model.Upload / 1000000) Mbit/s
+            @(Model.UploadSpeed / 1000000) Mbit/s
         </td></tr>
         </tbody>
     </table>
@@ -74,7 +48,7 @@
     <script>
         var g = new JustGage({
             id: "downloadSpeedGauge",
-            value: @(Model?.Download / 1000000 ?? 0),
+            value: @(Model?.DownloadSpeed / 1000000 ?? 0),
             min: 0,
             max: 70,
             title: "Download speed",
@@ -108,7 +82,7 @@
 
         var g = new JustGage({
             id: "uploadSpeedGauge",
-            value: @(Model?.Upload / 1000000 ?? 0),
+            value: @(Model?.UploadSpeed / 1000000 ?? 0),
             min: 0,
             max: 5,
             title: "Upload speed",
