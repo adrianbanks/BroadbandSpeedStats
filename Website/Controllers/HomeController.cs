@@ -1,5 +1,6 @@
-﻿using System.Web.Mvc;
-using BroadbandSpeedStats.Web.DataAccess;
+﻿using System.Configuration;
+using System.Web.Mvc;
+using BroadbandSpeedStats.Database.Queries;
 
 namespace BroadbandSpeedStats.Web.Controllers
 {
@@ -7,7 +8,9 @@ namespace BroadbandSpeedStats.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View(Store.LastTestResult);
+            var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
+            var latestTestResult = new LatestTestRunQuery().Run(connectionString);
+            return View(latestTestResult);
         }
     }
 }

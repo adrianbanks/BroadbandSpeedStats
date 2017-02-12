@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CreateTestRunCommand.cs" />
+    <Compile Include="Models\TestRunResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\LatestTestRunQuery.cs" />
     <Compile Include="Schema\Tables.cs" />
     <Compile Include="Schema\Views.cs" />
   </ItemGroup>

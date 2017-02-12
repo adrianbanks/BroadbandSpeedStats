@@ -132,7 +132,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecordSpeedTestController.cs" />
-    <Compile Include="DataAccess\Store.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -161,6 +160,10 @@
     <ProjectReference Include="..\Database.Migrations\Database.Migrations.csproj">
       <Project>{3919F3D0-B514-49B0-BFE5-CDCAA7B2DC22}</Project>
       <Name>Database.Migrations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{605312F4-76D7-4E9E-9414-2F653B035A42}</Project>
+      <Name>Database</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
