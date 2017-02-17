@@ -16,7 +16,12 @@ namespace BroadbandSpeedStats.Web.Controllers
             var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             try
             {
-                new CreateTestRunCommand().Execute(connectionString, result.Timestamp, result.Ping, result.Download, result.Upload);
+                var server = result.Server;
+                new CreateTestRunCommand().Execute(connectionString,
+                    result.Timestamp, result.Ping, result.Download, result.Upload,
+                    server.Id, server.Name, server.Host, server.Url, server.Url2,
+                    server.Latency, server.D, server.Lat, server.Lon,
+                    server.Country, server.Cc, server.Sponsor);
 
             }
             catch (Exception e)

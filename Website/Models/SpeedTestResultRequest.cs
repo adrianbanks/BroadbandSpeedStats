@@ -23,5 +23,23 @@ namespace BroadbandSpeedStats.Web.Models
         /// The upload speed in bit/s.
         /// </summary>
         public float Upload { get; set; }
+
+        public Server Server { get; set; }
+    }
+
+    public class Server
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Host { get; set; }
+        public string Url { get; set; }
+        public string Url2 { get; set; }
+        public float Latency { get; set; }
+        public float D { get; set; }
+        public string Lat { get; set; }
+        public string Lon { get; set; }
+        public string Country { get; set; }
+        public string Cc { get; set; }
+        public string Sponsor { get; set; }
     }
 }
