@@ -4,12 +4,12 @@
     <section class="content-header">
       <h1>
         Latest test results
-        <small>2/26/2017 9:00:03 PM</small>
+        <small id="testTime"></small>
       </h1>
     </section>
 
     <section class="content">
-        <div class="box">
+        <div id="latestResultData" class="box">
             <div class="overlay">
                 <i class="fa fa-refresh fa-spin"></i>
             </div>
@@ -19,50 +19,138 @@
                     <tr><td>
                         Ping
                     </td><td>
-                        32 ms
+                        <span id="ping"></span>
                     </td></tr>
 
                     <tr><td>
                         Download speed
                     </td><td>
-                        55 Mbit/s
+                        <span id="downloadSpeed"></span>
                     </td></tr>
 
                     <tr><td>
                         Upload speed
                     </td><td>
-                        4.9 Mbit/s
+                        <span id="uploadSpeed"></span>
                     </td></tr>
                 </table>
             </div>
         </div>
 
-        <div class="box">
-            <div class="overlay">
-                <i class="fa fa-refresh fa-spin"></i>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="latestDownloadSpeed" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+
+                    <div class="box-header with-border">
+                        <span class="box-title">Download speed</span>
+                    </div>
+
+                    <div class="box-body">
+                        <div id="downloadSpeedGauge"></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="box-header">
-                Download speed
-            </div>
+            <div class="col-md-6">
+                <div id="latestUploadSpeed" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
 
-            <div class="box-body">
-                chart
-            </div>
-        </div>
+                    <div class="box-header with-border">
+                        <span class="box-title">Upload speed</span>
+                    </div>
 
-        <div class="box">
-            <div class="overlay">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
-
-            <div class="box-header">
-                Upload speed
-            </div>
-
-            <div class="box-body">
-                chart
+                    <div class="box-body">
+                        <div id="uploadSpeedGauge"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+@EndSection
+
+@Section['PageScripts']
+<script src="Content/plugins/justgage/raphael-2.1.4.min.js"></script>
+<script src="Content/plugins/justgage/justgage.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $.getJSON('/api/LastTestResult', function (data) {
+            console.log('Latest test data: ' + JSON.stringify(data));
+
+            $('#testTime').html(data.timestamp);
+            $('#ping').html(data.pingTime + ' ms');
+            $('#downloadSpeed').html(data.downloadSpeed / 1000000 + ' Mbit/s');
+            $('#uploadSpeed').html(data.uploadSpeed / 1000000 + ' Mbit/s');
+
+            $('#latestResultData div.overlay').remove();
+
+            var defaultSettings = {
+                label: "Mbit/s",
+                min: 0,
+                counter: true,
+                pointer: true,
+                pointerOptions: {
+                    toplength: -5,
+                    bottomlength: 5,
+                    bottomwidth: 5,
+                    color: '#8e8e93',
+                    stroke: '#ffffff',
+                    stroke_width: 1,
+                    stroke_linecap: 'round'
+                },
+                relativeGaugeSize: true
+            };
+
+            var downloadSpeedGauge = new JustGage({
+                id: "downloadSpeedGauge",
+                defaults: defaultSettings,
+                value: data.downloadSpeed / 1000000,
+                max: 70,
+                customSectors: [{
+                    color : "#ff3b30",
+                    lo : 0,
+                    hi : 30
+                },{
+                    color : "#f9c802",
+                    lo : 30,
+                    hi : 50
+                },{
+                    color : "#43bf58",
+                    lo : 50,
+                    hi : 70
+                }]
+            });
+
+            $('#latestDownloadSpeed div.overlay').remove();
+
+            var uploadSpeedGauge = new JustGage({
+                id: "uploadSpeedGauge",
+                defaults: defaultSettings,
+                value: data.uploadSpeed / 1000000,
+                max: 5,
+                customSectors: [{
+                    color : "#ff3b30",
+                    lo : 0,
+                    hi : 1
+                },{
+                    color : "#f9c802",
+                    lo : 1,
+                    hi : 2
+                },{
+                    color : "#43bf58",
+                    lo : 2,
+                    hi : 5
+                }]
+            });
+
+            $('#latestUploadSpeed div.overlay').remove();
+        });
+    });
+</script>
+
 @EndSection

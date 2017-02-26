@@ -873,6 +873,7 @@
     <Content Include="Content\plugins\jQueryUI\jquery-ui.js" />
     <Content Include="Content\plugins\jQueryUI\jquery-ui.min.js" />
     <Content Include="Content\plugins\jQuery\jquery-2.2.3.min.js" />
+    <Content Include="Content\plugins\justgage\raphael-2.1.4.min.js" />
     <Content Include="Content\plugins\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Content\plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Content\plugins\jvectormap\jquery-jvectormap-usa-en.js" />
@@ -953,6 +954,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\plugins\justgage\justgage.js" />
     <Compile Include="HelloWorldModule.cs" />
     <Compile Include="Models\SpeedTestRequest.cs" />
     <Compile Include="Modules\APIModule.cs" />

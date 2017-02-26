@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using BroadbandSpeedStats.Database.Commands;
+using BroadbandSpeedStats.Database.Models;
+using BroadbandSpeedStats.Database.Queries;
 using BroadbandSpeedTests.Website.Models;
 using Nancy;
 using Nancy.ModelBinding;
@@ -11,11 +13,20 @@ namespace BroadbandSpeedTests.Website.Modules
     {
         public ApiModule() : base("/api")
         {
+            Get["/LastTestResult"] = _ => GetLastTestResult();
+
             Post["/RecordSpeedTest"] = _ =>
             {
                 var speedTestResult = this.Bind<SpeedTestResultRequest>();
                 return RecordSpeedTest(speedTestResult);
             };
+        }
+
+        private TestRunResult GetLastTestResult()
+        {
+            System.Threading.Thread.Sleep(1500);
+            var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
+            return new LatestTestRunQuery().Run(connectionString);
         }
 
         private HttpStatusCode RecordSpeedTest(SpeedTestResultRequest result)
