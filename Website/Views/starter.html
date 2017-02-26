@@ -17,6 +17,18 @@
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr><td>
+                        Date
+                    </td><td>
+                        <span id="date"></span>
+                    </td></tr>
+
+                    <tr><td>
+                        Time
+                    </td><td>
+                        <span id="time"></span>
+                    </td></tr>
+
+                    <tr><td>
                         Ping
                     </td><td>
                         <span id="ping"></span>
@@ -76,13 +88,18 @@
 @Section['PageScripts']
 <script src="Content/plugins/justgage/raphael-2.1.4.min.js"></script>
 <script src="Content/plugins/justgage/justgage.js"></script>
+<script src="Content/plugins/moment/moment-2.17.1.min.js"></script>
 
 <script>
     $(document).ready(function() {
         $.getJSON('/api/LastTestResult', function (data) {
             console.log('Latest test data: ' + JSON.stringify(data));
 
-            $('#testTime').html(data.timestamp);
+            var timeOfTest = moment(data.timestamp);
+
+            $('#testTime').html(timeOfTest.fromNow());
+            $('#date').html(timeOfTest.format('Do MMMM YYYY'));
+            $('#time').html(timeOfTest.format('HH:mm:ss'));
             $('#ping').html(data.pingTime + ' ms');
             $('#downloadSpeed').html(data.downloadSpeed / 1000000 + ' Mbit/s');
             $('#uploadSpeed').html(data.uploadSpeed / 1000000 + ' Mbit/s');

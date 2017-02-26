@@ -955,6 +955,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\plugins\justgage\justgage.js" />
+    <Content Include="Content\plugins\moment\moment-2.17.1.min.js" />
     <Compile Include="HelloWorldModule.cs" />
     <Compile Include="Models\SpeedTestRequest.cs" />
     <Compile Include="Modules\APIModule.cs" />
