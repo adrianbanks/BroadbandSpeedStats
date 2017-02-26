@@ -10,14 +10,6 @@ namespace BroadbandSpeedTests.Website
         }
     }
 
-    public class ApiModule : NancyModule
-    {
-        public ApiModule() : base("/api")
-        {
-            Get["/test"] = _ => new Foo { Name = "Bob", Age = 24 };
-        }
-    }
-
     public class Foo
     {
         public string Name { get; set; }
