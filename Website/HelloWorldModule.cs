@@ -10,6 +10,7 @@ namespace BroadbandSpeedTests.Website
             Get["/"] = parameters => View["starter.html", model];
             Get["/today"] = parameters => View["today.html", model];
             Get["/thisweek"] = parameters => View["thisweek.html", model];
+            Get["/thismonth"] = parameters => View["thismonth.html", model];
         }
     }
 
