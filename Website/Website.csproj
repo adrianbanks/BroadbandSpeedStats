@@ -951,6 +951,7 @@
     <Content Include="views\navbar.html" />
     <Content Include="views\left-sidebar.html" />
     <Content Include="views\master.html" />
+    <Content Include="views\thisweek.html" />
     <Content Include="views\today.html" />
     <Content Include="views\starter.html" />
     <Content Include="Web.config">

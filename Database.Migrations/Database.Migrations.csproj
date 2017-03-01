@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="MigrationOptions.cs" />
     <Compile Include="Migrations\0-InitialDatabase.cs" />
+    <Compile Include="Migrations\3-ThisWeeksTestResultsView.cs" />
     <Compile Include="Migrations\2-TodaysTestResultsView.cs" />
     <Compile Include="Migrations\1-FullTestResultInfo.cs" />
     <Compile Include="Migrator.cs" />

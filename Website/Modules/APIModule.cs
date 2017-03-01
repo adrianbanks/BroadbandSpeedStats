@@ -15,6 +15,7 @@ namespace BroadbandSpeedTests.Website.Modules
         {
             Get["/LastTestResult"] = _ => GetLastTestResult();
             Get["/TodaysTestResults"] = _ => GetTodaysResults();
+            Get["/ThisWeeksTestResults"] = _ => GetThisWeeksResults();
 
             Post["/RecordSpeedTest"] = _ =>
             {
@@ -35,6 +36,13 @@ namespace BroadbandSpeedTests.Website.Modules
             System.Threading.Thread.Sleep(1500);
             var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             return new TodaysResultsQuery().Run(connectionString);
+        }
+
+        private object GetThisWeeksResults()
+        {
+            System.Threading.Thread.Sleep(1500);
+            var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
+            return new ThisWeeksResultsQuery().Run(connectionString);
         }
 
         private HttpStatusCode RecordSpeedTest(SpeedTestResultRequest result)
