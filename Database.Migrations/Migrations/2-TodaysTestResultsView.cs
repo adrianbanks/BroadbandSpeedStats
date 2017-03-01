@@ -16,7 +16,7 @@ CREATE VIEW [{Views.TodaysTestResults.Name}] WITH SCHEMABINDING AS
                            [{Views.TodaysTestResults.Columns.DownloadSpeed}],
                            [{Views.TodaysTestResults.Columns.UploadSpeed}]
     FROM [dbo].[{Views.TodaysTestResults.SourceTable}]
-    WHERE WHERE DATEDIFF(d, {Views.TodaysTestResults.Columns.Timestamp}, GETUTCDATE()) = 0
+    WHERE DATEDIFF(d, {Views.TodaysTestResults.Columns.Timestamp}, GETUTCDATE()) = 0
     ORDER BY [{Views.TodaysTestResults.Columns.Timestamp}] DESC
 GO");
         }
