@@ -958,6 +958,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StartupInitialisation.cs" />
     <Content Include="Content\plugins\justgage\justgage-1.2.2.js" />
     <Content Include="Content\plugins\moment\moment-2.17.1.min.js" />
     <Compile Include="HelloWorldModule.cs" />
@@ -1016,6 +1017,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Database.Migrations\Database.Migrations.csproj">
+      <Project>{3919F3D0-B514-49B0-BFE5-CDCAA7B2DC22}</Project>
+      <Name>Database.Migrations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{605312f4-76d7-4e9e-9414-2f653b035a42}</Project>
       <Name>Database</Name>
