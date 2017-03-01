@@ -16,12 +16,48 @@
                 </div>
 
                 <div class="box-header with-border">
-                    <span class="box-title">Ping</span>
+                    <span class="box-title">Ping (ms)</span>
                 </div>
 
                 <div class="box-body">
-                    <div id="pingChart" class="chart">
-                        <canvas id="myChart" width="400" height="400"></canvas>
+                    <div class="chart">
+                        <canvas id="pingChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="downloadSpeed" class="box">
+                <div class="overlay">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+
+                <div class="box-header with-border">
+                    <span class="box-title">Download speed (Mbit/s)</span>
+                </div>
+
+                <div class="box-body">
+                    <div class="chart">
+                        <canvas id="downloadSpeedChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="uploadSpeed" class="box">
+                <div class="overlay">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+
+                <div class="box-header with-border">
+                    <span class="box-title">Upload speed (Mbit/s)</span>
+                </div>
+
+                <div class="box-body">
+                    <div class="chart">
+                        <canvas id="uploadSpeedChart" height="250"></canvas>
                     </div>
                 </div>
             </div>
@@ -30,76 +66,115 @@
 @EndSection
 
 @Section['PageScripts']
+<script src="Content/plugins/moment/moment-2.17.1.min.js"></script>
 <script src="Content/plugins/chartjs/chart.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-
-        var ctx = document.getElementById("myChart");
-        var data = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-                {
-                    label: "My First dataset",
-                    fillColor: "rgba(220,220,220,0.2)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [65, 59, 80, 81, 56, 55, 40]
+    $(document).ready(function () {
+        function createChart(chartId, units) {
+            var options = {
+                tooltips: {
+                    enabled: true,
+                    mode: "x-axis",
+                    callbacks: {
+                        title: function (tooltipItem, data) {
+                            return tooltipItem[0].yLabel + " " + units;
+                        },
+                        label: function (tooltipItems, data) {
+                            return null;
+                        }
+                    }
                 },
-                {
-                    label: "My Second dataset",
-                    fillColor: "rgba(151,187,205,0.2)",
-                    strokeColor: "rgba(151,187,205,1)",
-                    pointColor: "rgba(151,187,205,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [28, 48, 40, 19, 86, 27, 90]
-                }
-            ]
-        };
-        var myLineChart = new Chart(ctx).Line(data);
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [
+                        {
+                            type: "time",
+                            time: {
+                                unit: "hour",
+                                displayFormats: {
+                                    hour: "HH:mm"
+                                },
+                                tooltipFormat: "HH:mm"
+                            }
+                        }
+                    ],
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }
+                    ]
+                },
+                maintainAspectRatio: false
+            };
 
-
-    /*
-        var ctx = document.getElementById("pingTimesToday");
-        var timeLineChart = new Chart(ctx, {
-            type: "line",
-            data: {
+            var dataForChart = {
                 labels: [],
                 datasets: [
                     {
-                        data: []
+                        fill: true,
+                        backgroundColor: "rgba(220,220,220,0.5)",
+                        borderColor: "rgba(0, 166, 90,.8)",
+                        pointBorderColor: "rgba(0, 166, 90,.8)",
+                        pointRadius: 1,
+                        pointHoverRadius: 5,
+                        data: [],
+                        pointHitRadius: 5,
+                        cubicInterpolationMode: "monotone"
                     }
                 ]
+            };
+
+
+            var ctx = $('#' + chartId).get(0).getContext('2d');
+            var chart = new Chart(ctx,
+            {
+                type: 'line',
+                data: dataForChart,
+                options: options
+            });
+
+            return chart;
+        }
+
+        function populateChartData(data, containerId, chart, getYValueCallback) {
+            for (var i = 0; i < data.length; i++) {
+                var result = data[i];
+
+                var xValue = result.timestamp;
+                var yValue = getYValueCallback(result);
+                chart.data.labels.push(xValue);
+                chart.data.datasets[0].data.push(yValue);
             }
+
+            $('#' + containerId + ' .overlay').remove();
+            chart.update();
+        }
+
+
+        var pingChart = createChart('pingChart', 'ms');
+        var downloadSpeedChart = createChart('downloadSpeedChart', 'Mbit/s');
+        var uploadSpeedChart = createChart('uploadSpeedChart', 'Mbit/s');
+
+        $.getJSON('/api/TodaysTestResults', function (data) {
+            console.log('Todays data: ' + JSON.stringify(data));
+
+            populateChartData(data, 'ping', pingChart, function (result) {
+                return result.pingTime;
+            });
+
+            populateChartData(data, 'downloadSpeed', downloadSpeedChart, function (result) {
+                return result.downloadSpeed / 1000000;
+            });
+
+            populateChartData(data, 'uploadSpeed', uploadSpeedChart, function (result) {
+                return result.uploadSpeed / 1000000;
+            });
         });
-
-
-        $.getJSON('/api/TodaysResults', function (data) {
-            console.log('Today\'s test data: ' + JSON.stringify(data));
-
-            // clear the chart
-            timeLineChart.data.labels = [];
-            timeLineChart.data.datasets[0].data = [];
-
-            // Add data for each hour that is available
-            for (var testResult in data) {
-                timeLineChart.data.labels.push(testResult.Timestamp);
-                timeLineChart.data.datasets[0].data.push(testResult.PingTime);
-            }
-
-            $("#queries-over-time .overlay").remove();
-            timeLineChart.update();
-
-
-
-            $('#ping div.overlay').remove();
-        });
-        */
     });
 </script>
 

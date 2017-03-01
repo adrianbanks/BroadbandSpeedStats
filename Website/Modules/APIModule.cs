@@ -14,7 +14,7 @@ namespace BroadbandSpeedTests.Website.Modules
         public ApiModule() : base("/api")
         {
             Get["/LastTestResult"] = _ => GetLastTestResult();
-            Get["/TodaysResults"] = _ => GetTodaysResults();
+            Get["/TodaysTestResults"] = _ => GetTodaysResults();
 
             Post["/RecordSpeedTest"] = _ =>
             {
@@ -34,27 +34,7 @@ namespace BroadbandSpeedTests.Website.Modules
         {
             System.Threading.Thread.Sleep(1500);
             var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
-
-            var today = DateTime.Today;
-            return new[]
-                {
-                    new TestRunResult(today, 55, 0, 0),
-                    new TestRunResult(today.AddHours(1), 55, 0, 0),
-                    new TestRunResult(today.AddHours(2), 51, 0, 0),
-                    new TestRunResult(today.AddHours(3), 22, 0, 0),
-                    new TestRunResult(today.AddHours(4), 15, 0, 0),
-                    new TestRunResult(today.AddHours(5), 27, 0, 0),
-                    new TestRunResult(today.AddHours(6), 22, 0, 0),
-                    new TestRunResult(today.AddHours(7), 19, 0, 0),
-                    new TestRunResult(today.AddHours(8), 50, 0, 0),
-                    new TestRunResult(today.AddHours(9), 67, 0, 0),
-                    new TestRunResult(today.AddHours(10), 55, 0, 0),
-                    new TestRunResult(today.AddHours(11), 52, 0, 0),
-                    new TestRunResult(today.AddHours(12), 44, 0, 0),
-                    new TestRunResult(today.AddHours(13), 42, 0, 0),
-                    new TestRunResult(today.AddHours(14), 34, 0, 0),
-                    new TestRunResult(today.AddHours(15), 17, 0, 0),
-                };
+            return new TodaysResultsQuery().Run(connectionString);
         }
 
         private HttpStatusCode RecordSpeedTest(SpeedTestResultRequest result)

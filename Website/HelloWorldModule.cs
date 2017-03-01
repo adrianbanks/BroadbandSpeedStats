@@ -6,8 +6,9 @@ namespace BroadbandSpeedTests.Website
     {
         public HelloWorldModule()
         {
-            Get["/"] = parameters => View["starter.html", new Foo {Name = "Jim", Age = 123}];
-            Get["/today"] = parameters => View["today.html"];
+            var model = new Foo { Name = "Jim", Age = 123 };
+            Get["/"] = parameters => View["starter.html", model];
+            Get["/today"] = parameters => View["today.html", model];
         }
     }
 
