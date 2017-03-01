@@ -10,54 +10,90 @@
 
     <section class="content">
         <div class="row">
-            <div id="ping" class="box">
-                <div class="overlay">
-                    <i class="fa fa-refresh fa-spin"></i>
-                </div>
+            <div class="col-md-12">
+                <div id="ping" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
 
-                <div class="box-header with-border">
-                    <span class="box-title">Ping (ms)</span>
-                </div>
+                    <div class="box-header with-border">
+                        <span class="box-title">Ping (ms)</span>
+                    </div>
 
-                <div class="box-body">
-                    <div class="chart">
-                        <canvas id="pingChart" height="250"></canvas>
+                    <div class="box-body">
+                        <div class="chart">
+                            <canvas id="pingChart" height="250"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div id="downloadSpeed" class="box">
-                <div class="overlay">
-                    <i class="fa fa-refresh fa-spin"></i>
-                </div>
+            <div class="col-md-12">
+                <div id="downloadSpeed" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
 
-                <div class="box-header with-border">
-                    <span class="box-title">Download speed (Mbit/s)</span>
-                </div>
+                    <div class="box-header with-border">
+                        <span class="box-title">Download speed (Mbit/s)</span>
+                    </div>
 
-                <div class="box-body">
-                    <div class="chart">
-                        <canvas id="downloadSpeedChart" height="250"></canvas>
+                    <div class="box-body">
+                        <div class="chart">
+                            <canvas id="downloadSpeedChart" height="250"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div id="uploadSpeed" class="box">
-                <div class="overlay">
-                    <i class="fa fa-refresh fa-spin"></i>
-                </div>
+            <div class="col-md-12">
+                <div id="uploadSpeed" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
 
-                <div class="box-header with-border">
-                    <span class="box-title">Upload speed (Mbit/s)</span>
-                </div>
+                    <div class="box-header with-border">
+                        <span class="box-title">Upload speed (Mbit/s)</span>
+                    </div>
 
-                <div class="box-body">
-                    <div class="chart">
-                        <canvas id="uploadSpeedChart" height="250"></canvas>
+                    <div class="box-body">
+                        <div class="chart">
+                            <canvas id="uploadSpeedChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="dataTableArea" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+
+                    <div class="box-header with-border">
+                        <span class="box-title">Raw data</span>
+                    </div>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-condensed table-hover" id="dataTable">
+                            <tbody>
+                            <tr><th>
+                                Time
+                            </th><th>
+                                Ping (ms)
+                            </th><th>
+                                Download speed (Mbit/s)
+                            </th><th>
+                                Upload speed (Mbit/s)
+                            </th></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -142,6 +178,9 @@
         }
 
         function populateChartData(data, containerId, chart, getYValueCallback) {
+            chart.data.labels = [];
+            chart.data.datasets[0].data = [];
+
             for (var i = 0; i < data.length; i++) {
                 var result = data[i];
 
@@ -155,6 +194,21 @@
             chart.update();
         }
 
+        function populateDataTable(data, tableId, containerId) {
+            var table = $('#' + tableId);
+
+            for (var i = 0; i < data.length; i++) {
+                var result = data[i];
+
+                var timeOfTest = moment(result.timestamp);
+                var time = timeOfTest.format('HH:mm:ss');
+
+                table.find('tbody:last')
+                     .append('<tr><td>' + time + '</td><td>' + result.pingTime + '</td><td>' + result.downloadSpeed / 1000000 + '</td><td>' + result.uploadSpeed / 1000000 + '</td></tr>');
+            }
+
+            $('#' + containerId + ' .overlay').remove();
+        }
 
         var pingChart = createChart('pingChart', 'ms');
         var downloadSpeedChart = createChart('downloadSpeedChart', 'Mbit/s');
@@ -174,6 +228,8 @@
             populateChartData(data, 'uploadSpeed', uploadSpeedChart, function (result) {
                 return result.uploadSpeed / 1000000;
             });
+
+            populateDataTable(data, 'dataTable', 'dataTableArea');
         });
     });
 </script>
