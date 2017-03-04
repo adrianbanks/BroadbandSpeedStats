@@ -8,9 +8,9 @@ namespace BroadbandSpeedTests.Website
         {
             var model = new Foo { Name = "Jim", Age = 123 };
             Get["/"] = parameters => View["starter.html", model];
-            Get["/today"] = parameters => View["today.html", model];
-            Get["/thisweek"] = parameters => View["thisweek.html", model];
-            Get["/thismonth"] = parameters => View["thismonth.html", model];
+            Get["/day"] = parameters => View["day.html", model];
+            Get["/week"] = parameters => View["week.html", model];
+            Get["/month"] = parameters => View["month.html", model];
         }
     }
 
