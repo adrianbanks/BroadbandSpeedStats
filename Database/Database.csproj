@@ -43,6 +43,7 @@
     <Compile Include="Commands\CreateTestRunCommand.cs" />
     <Compile Include="Models\TestRunResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\GetTestRunResultsFromViewQuery.cs" />
     <Compile Include="Queries\LatestTestRunQuery.cs" />
     <Compile Include="Queries\ThisMonthsResultsQuery.cs" />
     <Compile Include="Queries\ThisWeeksResultsQuery.cs" />

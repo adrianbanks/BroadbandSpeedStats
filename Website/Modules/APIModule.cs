@@ -1,5 +1,5 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
+using System.Linq;
 using BroadbandSpeedStats.Database.Commands;
 using BroadbandSpeedStats.Database.Models;
 using BroadbandSpeedStats.Database.Queries;
@@ -11,8 +11,12 @@ namespace BroadbandSpeedTests.Website.Modules
 {
     public class ApiModule : NancyModule
     {
+        private readonly string connectionString;
+
         public ApiModule() : base("/api")
         {
+            connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
+
             Get["/LastTestResult"] = _ => GetLastTestResult();
             Get["/TodaysTestResults"] = _ => GetTodaysResults();
             Get["/ThisWeeksTestResults"] = _ => GetThisWeeksResults();
@@ -27,50 +31,32 @@ namespace BroadbandSpeedTests.Website.Modules
 
         private TestRunResult GetLastTestResult()
         {
-            System.Threading.Thread.Sleep(1500);
-            var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
-            return new LatestTestRunQuery().Run(connectionString);
+            return new LatestTestRunQuery().Run(connectionString).SingleOrDefault();
         }
 
         private object GetTodaysResults()
         {
-            System.Threading.Thread.Sleep(1500);
-            var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             return new TodaysResultsQuery().Run(connectionString);
         }
 
         private object GetThisWeeksResults()
         {
-            System.Threading.Thread.Sleep(1500);
-            var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             return new ThisWeeksResultsQuery().Run(connectionString);
         }
 
         private object GetThisMonthsResults()
         {
-            System.Threading.Thread.Sleep(1500);
-            var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             return new ThisMonthsResultsQuery().Run(connectionString);
         }
 
         private HttpStatusCode RecordSpeedTest(SpeedTestResultRequest result)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
-
-            try
-            {
-                var server = result.Server;
-                new CreateTestRunCommand().Execute(connectionString,
-                    result.Timestamp, result.Ping, result.Download, result.Upload,
-                    server.Id, server.Name, server.Host, server.Url, server.Url2,
-                    server.Latency, server.D, server.Lat, server.Lon,
-                    server.Country, server.Cc, server.Sponsor);
-
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            var server = result.Server;
+            new CreateTestRunCommand().Execute(connectionString,
+                result.Timestamp, result.Ping, result.Download, result.Upload,
+                server.Id, server.Name, server.Host, server.Url, server.Url2,
+                server.Latency, server.D, server.Lat, server.Lon,
+                server.Country, server.Cc, server.Sponsor);
 
             //response.Headers.Location = new Uri("");
             return HttpStatusCode.Created;
