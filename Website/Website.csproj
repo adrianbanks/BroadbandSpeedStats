@@ -947,14 +947,14 @@
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.js" />
-    <Content Include="views\right-sidebar.html" />
-    <Content Include="views\navbar.html" />
-    <Content Include="views\left-sidebar.html" />
-    <Content Include="views\master.html" />
-    <Content Include="views\month.html" />
-    <Content Include="views\week.html" />
-    <Content Include="views\day.html" />
-    <Content Include="views\starter.html" />
+    <Content Include="Views\right-sidebar.html" />
+    <Content Include="Views\navbar.html" />
+    <Content Include="Views\left-sidebar.html" />
+    <Content Include="Views\master.html" />
+    <Content Include="Views\month.html" />
+    <Content Include="Views\week.html" />
+    <Content Include="Views\day.html" />
+    <Content Include="Views\starter.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

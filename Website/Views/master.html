@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Broadband Speed Stats</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="Content/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="Content/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="Content/dist/css/skins/skin-blue.min.css">
+
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <a href="/" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini">Stats</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg">Speed Stats</span>
+    </a>
+
+    @Partial['navbar.html']
+  </header>
+
+  @Partial['left-sidebar.html']
+
+  <div class="content-wrapper">
+    @Section['MainContent']
+  </div>
+
+  <footer class="main-footer">
+      <div class="pull-right hidden-xs">
+          <a href="https://github.com/adrianbanks/BroadbandSpeedStats">
+              <span class="fa fa-github-square"></span>
+              View on GitHub
+          </a>
+      </div>
+    <strong>Copyright &copy; 2017 <a href="http://www.adrianbanks.co.uk">Adrian Banks</a>.</strong> All rights reserved.
+  </footer>
+
+  @Partial['right-sidebar.html']
+</div>
+
+<script src="Content/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="Content/bootstrap/js/bootstrap.min.js"></script>
+<script src="Content/dist/js/app.min.js"></script>
+
+@Section['PageScripts']
+
+</body>
+</html>
