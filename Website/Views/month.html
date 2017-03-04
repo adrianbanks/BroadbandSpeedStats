@@ -114,7 +114,9 @@
                     mode: "x-axis",
                     callbacks: {
                         title: function (tooltipItem, data) {
-                            return tooltipItem[0].yLabel + " " + units;
+                            var item = tooltipItem[0];
+                            var date = moment(item.xLabel).format("DD MMM HH:mm");
+                            return date + "    " + item.yLabel + " " + units;
                         },
                         label: function (tooltipItems, data) {
                             return null;
