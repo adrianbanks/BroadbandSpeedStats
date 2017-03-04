@@ -3,7 +3,7 @@ using FluentMigrator;
 
 namespace BroadbandSpeedTests.Database.Migrations.Migrations
 {
-    [Migration(20170300)]
+    [Migration(20170302)]
     public class ThisMonthsTestResultsView : Migration
     {
         public override void Up()
