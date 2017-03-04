@@ -101,8 +101,8 @@
             $('#date').html(timeOfTest.format('Do MMMM YYYY'));
             $('#time').html(timeOfTest.format('HH:mm:ss'));
             $('#ping').html(data.pingTime + ' ms');
-            $('#downloadSpeed').html(data.downloadSpeed / 1000000 + ' Mbit/s');
-            $('#uploadSpeed').html(data.uploadSpeed / 1000000 + ' Mbit/s');
+            $('#downloadSpeed').html(data.downloadSpeed + ' Mbit/s');
+            $('#uploadSpeed').html(data.uploadSpeed + ' Mbit/s');
 
             $('#latestResultData div.overlay').remove();
 
@@ -128,7 +128,7 @@
             var downloadSpeedGauge = new JustGage({
                 id: "downloadSpeedGauge",
                 defaults: defaultSettings,
-                value: data.downloadSpeed / 1000000,
+                value: data.downloadSpeed,
                 max: 70,
                 customSectors: [{
                     color : "#ff3b30",
@@ -150,7 +150,7 @@
             var uploadSpeedGauge = new JustGage({
                 id: "uploadSpeedGauge",
                 defaults: defaultSettings,
-                value: data.uploadSpeed / 1000000,
+                value: data.uploadSpeed,
                 max: 5,
                 customSectors: [{
                     color : "#ff3b30",

@@ -52,8 +52,10 @@ namespace BroadbandSpeedTests.Website.Modules
         private HttpStatusCode RecordSpeedTest(SpeedTestResultRequest result)
         {
             var server = result.Server;
+            var downloadSpeedInMbitPerSecond = result.Download / 1000000;
+            var uploadSpeedInMbitPerSecond = result.Upload / 1000000;
             new CreateTestRunCommand().Execute(connectionString,
-                result.Timestamp, result.Ping, result.Download, result.Upload,
+                result.Timestamp, result.Ping, downloadSpeedInMbitPerSecond, uploadSpeedInMbitPerSecond,
                 server.Id, server.Name, server.Host, server.Url, server.Url2,
                 server.Latency, server.D, server.Lat, server.Lon,
                 server.Country, server.Cc, server.Sponsor);

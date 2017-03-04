@@ -204,7 +204,7 @@
                 var time = timeOfTest.format('HH:mm:ss');
 
                 table.find('tbody:last')
-                     .append('<tr><td>' + time + '</td><td>' + result.pingTime + '</td><td>' + result.downloadSpeed / 1000000 + '</td><td>' + result.uploadSpeed / 1000000 + '</td></tr>');
+                     .append('<tr><td>' + time + '</td><td>' + result.pingTime + '</td><td>' + result.downloadSpeed + '</td><td>' + result.uploadSpeed + '</td></tr>');
             }
 
             $('#' + containerId + ' .overlay').remove();
@@ -222,11 +222,11 @@
             });
 
             populateChartData(data, 'downloadSpeed', downloadSpeedChart, function (result) {
-                return result.downloadSpeed / 1000000;
+                return result.downloadSpeed;
             });
 
             populateChartData(data, 'uploadSpeed', uploadSpeedChart, function (result) {
-                return result.uploadSpeed / 1000000;
+                return result.uploadSpeed;
             });
 
             populateDataTable(data, 'dataTable', 'dataTableArea');
