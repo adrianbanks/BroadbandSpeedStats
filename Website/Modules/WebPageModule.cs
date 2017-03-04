@@ -6,17 +6,10 @@ namespace BroadbandSpeedTests.Website.Modules
     {
         public WebPageModule()
         {
-            var model = new Foo { Name = "Jim", Age = 123 };
-            Get["/"] = parameters => View["starter.html", model];
-            Get["/day"] = parameters => View["day.html", model];
-            Get["/week"] = parameters => View["week.html", model];
-            Get["/month"] = parameters => View["month.html", model];
+            Get["/"] = parameters => View["starter.html"];
+            Get["/day"] = parameters => View["day.html"];
+            Get["/week"] = parameters => View["week.html"];
+            Get["/month"] = parameters => View["month.html"];
         }
-    }
-
-    public class Foo
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
     }
 }
