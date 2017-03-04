@@ -21,6 +21,7 @@ namespace BroadbandSpeedTests.Website.Modules
             Get["/TodaysTestResults"] = _ => GetTodaysResults();
             Get["/ThisWeeksTestResults"] = _ => GetThisWeeksResults();
             Get["/ThisMonthsTestResults"] = _ => GetThisMonthsResults();
+            Get["/ThisYearsTestResults"] = _ => GetThisYearsResults();
 
             Post["/RecordSpeedTest"] = _ =>
             {
@@ -47,6 +48,11 @@ namespace BroadbandSpeedTests.Website.Modules
         private object GetThisMonthsResults()
         {
             return new ThisMonthsResultsQuery().Run(connectionString);
+        }
+
+        private object GetThisYearsResults()
+        {
+            return new ThisYearsResultsQuery().Run(connectionString);
         }
 
         private HttpStatusCode RecordSpeedTest(SpeedTestResultRequest result)

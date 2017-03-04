@@ -47,6 +47,7 @@
     <Compile Include="Queries\LatestTestRunQuery.cs" />
     <Compile Include="Queries\ThisMonthsResultsQuery.cs" />
     <Compile Include="Queries\ThisWeeksResultsQuery.cs" />
+    <Compile Include="Queries\ThisYearsResultsQuery.cs" />
     <Compile Include="Queries\TodaysResultsQuery.cs" />
     <Compile Include="Schema\Tables.cs" />
     <Compile Include="Schema\Views.cs" />

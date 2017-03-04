@@ -952,6 +952,7 @@
     <Content Include="Views\left-sidebar.html" />
     <Content Include="Views\master.html" />
     <Content Include="Views\month.html" />
+    <Content Include="Views\year.html" />
     <Content Include="Views\week.html" />
     <Content Include="Views\day.html" />
     <Content Include="Views\starter.html" />

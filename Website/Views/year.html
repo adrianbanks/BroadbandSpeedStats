@@ -1,0 +1,238 @@
+﻿@Master['master.html']
+
+@Section['MainContent']
+    <section class="content-header">
+      <h1>
+        This year&apos;s results
+        <small id="testTime"></small>
+      </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="ping" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+
+                    <div class="box-header with-border">
+                        <span class="box-title">Ping (ms)</span>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="chart">
+                            <canvas id="pingChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="downloadSpeed" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+
+                    <div class="box-header with-border">
+                        <span class="box-title">Download speed (Mbit/s)</span>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="chart">
+                            <canvas id="downloadSpeedChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="uploadSpeed" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+
+                    <div class="box-header with-border">
+                        <span class="box-title">Upload speed (Mbit/s)</span>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="chart">
+                            <canvas id="uploadSpeedChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="dataTableArea" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+
+                    <div class="box-header with-border">
+                        <span class="box-title">Raw data</span>
+                    </div>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-condensed table-hover" id="dataTable">
+                            <tbody>
+                            <tr><th>
+                                Time
+                            </th><th>
+                                Ping (ms)
+                            </th><th>
+                                Download speed (Mbit/s)
+                            </th><th>
+                                Upload speed (Mbit/s)
+                            </th></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@EndSection
+
+@Section['PageScripts']
+<script src="Content/plugins/moment/moment-2.17.1.min.js"></script>
+<script src="Content/plugins/chartjs/chart.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        function createChart(chartId, units) {
+            var options = {
+                tooltips: {
+                    enabled: true,
+                    mode: "x-axis",
+                    callbacks: {
+                        title: function (tooltipItem, data) {
+                            var item = tooltipItem[0];
+                            var date = moment(item.xLabel).format("DD MMM HH:mm");
+                            return date + "    " + item.yLabel + " " + units;
+                        },
+                        label: function (tooltipItems, data) {
+                            return null;
+                        }
+                    }
+                },
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [
+                        {
+                            type: "time",
+                            time: {
+                                unit: "day",
+                                displayFormats: {
+                                    day: "DD MMM YYYY"
+                                }
+                            }
+                        }
+                    ],
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }
+                    ]
+                },
+                maintainAspectRatio: false
+            };
+
+            var dataForChart = {
+                labels: [],
+                datasets: [
+                    {
+                        fill: true,
+                        backgroundColor: "rgba(220,220,220,0.5)",
+                        borderColor: "rgba(0, 166, 90,.8)",
+                        pointBorderColor: "rgba(0, 166, 90,.8)",
+                        pointRadius: 1,
+                        pointHoverRadius: 5,
+                        data: [],
+                        pointHitRadius: 5,
+                        cubicInterpolationMode: "monotone"
+                    }
+                ]
+            };
+
+
+            var ctx = $('#' + chartId).get(0).getContext('2d');
+            var chart = new Chart(ctx,
+            {
+                type: 'line',
+                data: dataForChart,
+                options: options
+            });
+
+            return chart;
+        }
+
+        function populateChartData(data, containerId, chart, getYValueCallback) {
+            chart.data.labels = [];
+            chart.data.datasets[0].data = [];
+
+            for (var i = 0; i < data.length; i++) {
+                var result = data[i];
+
+                var xValue = result.timestamp;
+                var yValue = getYValueCallback(result);
+                chart.data.labels.push(xValue);
+                chart.data.datasets[0].data.push(yValue);
+            }
+
+            $('#' + containerId + ' .overlay').remove();
+            chart.update();
+        }
+
+        function populateDataTable(data, tableId, containerId) {
+            var table = $('#' + tableId);
+
+            for (var i = 0; i < data.length; i++) {
+                var result = data[i];
+
+                var timeOfTest = moment(result.timestamp);
+                var time = timeOfTest.format('DD/MM/YYYY HH:mm:ss');
+
+                table.find('tbody:last')
+                     .append('<tr><td>' + time + '</td><td>' + result.pingTime + '</td><td>' + result.downloadSpeed + '</td><td>' + result.uploadSpeed + '</td></tr>');
+            }
+
+            $('#' + containerId + ' .overlay').remove();
+        }
+
+        var pingChart = createChart('pingChart', 'ms');
+        var downloadSpeedChart = createChart('downloadSpeedChart', 'Mbit/s');
+        var uploadSpeedChart = createChart('uploadSpeedChart', 'Mbit/s');
+
+        $.getJSON('/api/ThisYearsTestResults', function (data) {
+            console.log('Todays data: ' + JSON.stringify(data));
+
+            populateChartData(data, 'ping', pingChart, function (result) {
+                return result.pingTime;
+            });
+
+            populateChartData(data, 'downloadSpeed', downloadSpeedChart, function (result) {
+                return result.downloadSpeed;
+            });
+
+            populateChartData(data, 'uploadSpeed', uploadSpeedChart, function (result) {
+                return result.uploadSpeed;
+            });
+
+            populateDataTable(data, 'dataTable', 'dataTableArea');
+        });
+    });
+</script>
+
+@EndSection
