@@ -1,10 +1,10 @@
 ﻿using Nancy;
 
-namespace BroadbandSpeedTests.Website
+namespace BroadbandSpeedTests.Website.Modules
 {
-    public class HelloWorldModule : NancyModule
+    public class WebPageModule : NancyModule
     {
-        public HelloWorldModule()
+        public WebPageModule()
         {
             var model = new Foo { Name = "Jim", Age = 123 };
             Get["/"] = parameters => View["starter.html", model];
