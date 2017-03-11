@@ -19,27 +19,27 @@ namespace BroadbandStats.Website.Modules
 
             this.attachedDevicesParser = attachedDevicesParser;
 
-            Post["/RecordRouterDevices"] = _ =>
+            Post["/RecordAttachedDevices"] = _ =>
             {
                 var body = Request.Body.AsString();
                 var model = attachedDevicesParser.Parse(body);
-                return RecordRouterDevices(model);
+                return RecordAttachedDevices(model);
             };
 
-            Post["/RecordRouterTraffic"] = _ =>
+            Post["/RecordTrafficStats"] = _ =>
             {
 //                var body = Request.Body.AsString();
 //                var model = new RouterTrafficParser().Parse(body);
-                return RecordRouterTraffic();
+                return RecordTrafficStats();
             };
         }
 
-        private HttpStatusCode RecordRouterDevices(IEnumerable<Device> attachedDevices)
+        private HttpStatusCode RecordAttachedDevices(IEnumerable<Device> attachedDevices)
         {
             return HttpStatusCode.Created;
         }
 
-        private HttpStatusCode RecordRouterTraffic()
+        private HttpStatusCode RecordTrafficStats()
         {
             return HttpStatusCode.Created;
         }
