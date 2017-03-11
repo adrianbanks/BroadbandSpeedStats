@@ -8,16 +8,12 @@ namespace BroadbandStats.Website.Modules
 {
     public sealed class NetgearApiModule : NancyModule
     {
-        private readonly AttachedDevicesParser attachedDevicesParser;
-
         public NetgearApiModule(AttachedDevicesParser attachedDevicesParser) : base("/netgear")
         {
             if (attachedDevicesParser == null)
             {
                 throw new ArgumentNullException(nameof(attachedDevicesParser));
             }
-
-            this.attachedDevicesParser = attachedDevicesParser;
 
             Post["/RecordAttachedDevices"] = _ =>
             {
