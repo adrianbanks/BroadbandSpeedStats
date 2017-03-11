@@ -40,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Device.cs" />
-    <Compile Include="Parsers\AttachedDevicesParser.cs" />
-    <Compile Include="Parsers\DeviceParser.cs" />
-    <Compile Include="Parsers\DevicesParser.cs" />
+    <Compile Include="Devices\Device.cs" />
+    <Compile Include="Devices\AttachedDevicesParser.cs" />
+    <Compile Include="Devices\DeviceParser.cs" />
+    <Compile Include="Devices\DevicesParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

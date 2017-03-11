@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BroadbandStats.NetgearRouter.Models;
 
-namespace BroadbandStats.NetgearRouter.Parsers
+namespace BroadbandStats.NetgearRouter.Devices
 {
     public sealed class DevicesParser
     {

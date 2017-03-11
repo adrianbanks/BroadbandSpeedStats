@@ -1,9 +1,8 @@
-﻿using BroadbandStats.NetgearRouter.Models;
-using BroadbandStats.NetgearRouter.Parsers;
+﻿using BroadbandStats.NetgearRouter.Devices;
 using NUnit.Framework;
 using Shouldly;
 
-namespace NetgearRouter.Tests
+namespace NetgearRouter.Tests.Devices
 {
     [TestFixture]
     public sealed class DeviceParserTests

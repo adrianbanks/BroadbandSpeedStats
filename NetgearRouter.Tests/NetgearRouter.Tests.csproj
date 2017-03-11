@@ -48,9 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttachedDevicesParserTests.cs" />
-    <Compile Include="DevicesParserTests.cs" />
-    <Compile Include="DeviceParserTests.cs" />
+    <Compile Include="Devices\AttachedDevicesParserTests.cs" />
+    <Compile Include="Devices\DevicesParserTests.cs" />
+    <Compile Include="Devices\DeviceParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

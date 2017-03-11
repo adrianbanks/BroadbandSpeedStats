@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.XPath;
-using BroadbandStats.NetgearRouter.Models;
 
-namespace BroadbandStats.NetgearRouter.Parsers
+namespace BroadbandStats.NetgearRouter.Devices
 {
     public sealed class AttachedDevicesParser
     {

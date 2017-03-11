@@ -1,7 +1,6 @@
 ﻿using System;
-using BroadbandStats.NetgearRouter.Models;
 
-namespace BroadbandStats.NetgearRouter.Parsers
+namespace BroadbandStats.NetgearRouter.Devices
 {
     public sealed class DeviceParser
     {

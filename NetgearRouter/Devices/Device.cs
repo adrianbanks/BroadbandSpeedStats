@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BroadbandStats.NetgearRouter.Models
+namespace BroadbandStats.NetgearRouter.Devices
 {
     public sealed class Device
     {

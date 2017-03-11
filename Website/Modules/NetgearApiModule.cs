@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
-using BroadbandStats.NetgearRouter.Models;
-using BroadbandStats.NetgearRouter.Parsers;
+using BroadbandStats.NetgearRouter.Devices;
 using Nancy;
 using Nancy.Extensions;
 
