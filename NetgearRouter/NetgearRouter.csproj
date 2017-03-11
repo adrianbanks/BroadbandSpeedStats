@@ -45,7 +45,6 @@
     <Compile Include="Devices\DeviceInformationExtractor.cs" />
     <Compile Include="Devices\DeviceParser.cs" />
     <Compile Include="Devices\DevicesParser.cs" />
-    <Compile Include="Devices\FilteredDevicesParser.cs" />
     <Compile Include="Devices\IDeviceInformationExtractor.cs" />
     <Compile Include="Devices\IDeviceParser.cs" />
     <Compile Include="Devices\IDevicesParser.cs" />

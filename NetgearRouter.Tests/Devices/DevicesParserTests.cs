@@ -39,11 +39,21 @@ namespace NetgearRouter.Tests.Devices
             devices.Count().ShouldBe(expectedNumberOfDevices);
         }
 
+        [Test]
+        public void ParsingShouldIgnoreAnyDevicesThatFailedToParse()
+        {
+            var parser = new DevicesParser(new FakeDeviceParser());
+            var devices = parser.Parse("2@gibberish@id2;ipAddress2;name2;macAddress2;connectionType2@");
+            devices.Count().ShouldBe(1);
+        }
+
         private sealed class FakeDeviceParser : IDeviceParser
         {
             public Device Parse(string deviceInformation)
             {
-                return new Device("name", "ip address", "mac address", "connection type");
+                return deviceInformation == "gibberish"
+                    ? Device.Null
+                    : new Device("name", "ip address", "mac address", "connection type");
             }
         }
     }

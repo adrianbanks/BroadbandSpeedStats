@@ -25,7 +25,7 @@ namespace BroadbandStats.NetgearRouter.Devices
 
         public IEnumerable<Device> Parse(string devicesInformation)
         {
-            return ParseInner(devicesInformation);
+            return ParseInner(devicesInformation).Where(d => d != Device.Null);
         }
 
         private IEnumerable<Device> ParseInner(string devicesInformation)
