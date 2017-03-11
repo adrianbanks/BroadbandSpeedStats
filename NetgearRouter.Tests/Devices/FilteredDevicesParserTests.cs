@@ -7,7 +7,7 @@ using Shouldly;
 namespace NetgearRouter.Tests.Devices
 {
     [TestFixture]
-    public class FilteredDevicesParserTests
+    public sealed class FilteredDevicesParserTests
     {
         [Test]
         public void ParsingShouldIgnoreAnyDevicesThatFailedToParse()
