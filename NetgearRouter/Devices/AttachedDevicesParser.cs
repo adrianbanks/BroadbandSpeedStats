@@ -7,9 +7,9 @@ namespace BroadbandStats.NetgearRouter.Devices
     public sealed class AttachedDevicesParser
     {
         private readonly IDevicesParser devicesParser;
-        private readonly DeviceInformationExtractor deviceInformationExtractor;
+        private readonly IDeviceInformationExtractor deviceInformationExtractor;
 
-        public AttachedDevicesParser(IDevicesParser devicesParser, DeviceInformationExtractor deviceInformationExtractor)
+        public AttachedDevicesParser(IDevicesParser devicesParser, IDeviceInformationExtractor deviceInformationExtractor)
         {
             if (devicesParser == null)
             {

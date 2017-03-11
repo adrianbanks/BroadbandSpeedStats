@@ -4,7 +4,7 @@ using System.Xml.XPath;
 
 namespace BroadbandStats.NetgearRouter.Devices
 {
-    public sealed class DeviceInformationExtractor
+    public sealed class DeviceInformationExtractor : IDeviceInformationExtractor
     {
         public string ExtractDeviceInformation(string soapResponse)
         {

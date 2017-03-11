@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using BroadbandStats.NetgearRouter.Devices;
 using NUnit.Framework;
 using Shouldly;
@@ -11,7 +12,6 @@ namespace NetgearRouter.Tests.Devices
         [TestCase(null)]
         [TestCase("")]
         [TestCase("  ")]
-        [TestCase("gibberish")]
         public void ShouldFailWhenGivenInvalidInput(string soapResponse)
         {
             var parser = new AttachedDevicesParser(new DevicesParser(new DeviceParser()), new DeviceInformationExtractor());
@@ -22,23 +22,25 @@ namespace NetgearRouter.Tests.Devices
         [Test]
         public void ShouldParseDevicesCorrectly()
         {
-            var parser = new AttachedDevicesParser(new DevicesParser(new DeviceParser()), new DeviceInformationExtractor());
-            var attachedDevices = parser.Parse(ExampleSoapResponse);
+            var parser = new AttachedDevicesParser(new FakeDevicesParser(), new FakeDeviceInformationExtractor());
+            var attachedDevices = parser.Parse("example soap response");
             attachedDevices.Count().ShouldBe(4);
         }
 
-        private const string ExampleSoapResponse = @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<soap-env:Envelope
-        xmlns:soap-env=""http://schemas.xmlsoap.org/soap/envelope/""
-        soap-env:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/""
-        >
-<soap-env:Body>
-    <m:GetAttachDeviceResponse
-        xmlns:m=""urn:NETGEAT-ROUTER:service:DeviceInfo:1"">
-        <NewAttachDevice>4@1;192.168.1.2;ANDROID-device;00:00:00:00:00:00;wireless@2;192.168.1.3;BOBS-IPHONE;12:34:56:78:90:AB;wireless@3;192.168.1.4;IPAD;BA:09:87:65:43:21;wireless@4;192.168.1.5;LAPTOP;FF:FF:FF:FF:FF:FF;wireless@</NewAttachDevice>
-    </m:GetAttachDeviceResponse>
-    <ResponseCode>000</ResponseCode>
-</soap-env:Body>
-</soap-env:Envelope>";
+        private sealed class FakeDevicesParser : IDevicesParser
+        {
+            public IEnumerable<Device> Parse(string devicesInformation)
+            {
+                return devicesInformation == "example device information" ? new Device[4] : new Device[0];
+            }
+        }
+
+        private sealed class FakeDeviceInformationExtractor : IDeviceInformationExtractor
+        {
+            public string ExtractDeviceInformation(string soapResponse)
+            {
+                return soapResponse == "example soap response" ? "example device information" : null;
+            }
+        }
     }
 }
