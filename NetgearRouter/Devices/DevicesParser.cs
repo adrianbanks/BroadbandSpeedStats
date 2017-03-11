@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BroadbandStats.NetgearRouter.Devices
 {
-    public sealed class DevicesParser
+    public sealed class DevicesParser : IDevicesParser
     {
         // devices information is in the form:
         //      count@device information@device information@device information... @
@@ -25,7 +25,7 @@ namespace BroadbandStats.NetgearRouter.Devices
 
         public IEnumerable<Device> Parse(string devicesInformation)
         {
-            return ParseInner(devicesInformation).Where(d => d != Device.Null);
+            return ParseInner(devicesInformation);
         }
 
         private IEnumerable<Device> ParseInner(string devicesInformation)

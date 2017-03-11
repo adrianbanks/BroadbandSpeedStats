@@ -51,6 +51,7 @@
     <Compile Include="Devices\AttachedDevicesParserTests.cs" />
     <Compile Include="Devices\DevicesParserTests.cs" />
     <Compile Include="Devices\DeviceParserTests.cs" />
+    <Compile Include="Devices\FilteredDevicesParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
