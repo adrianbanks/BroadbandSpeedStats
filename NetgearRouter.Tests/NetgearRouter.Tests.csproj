@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttachedDevicesParserTests.cs" />
     <Compile Include="DevicesParserTests.cs" />
     <Compile Include="DeviceParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Device.cs" />
+    <Compile Include="Parsers\AttachedDevicesParser.cs" />
     <Compile Include="Parsers\DeviceParser.cs" />
     <Compile Include="Parsers\DevicesParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,12 +1,39 @@
-﻿using BroadbandStats.NetgearRouter.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.XPath;
+using BroadbandStats.NetgearRouter.Models;
 
 namespace BroadbandStats.NetgearRouter.Parsers
 {
     public sealed class AttachedDevicesParser
     {
-        public AttachedDevicesModel Parse(string soapResponse)
+        public IEnumerable<Device> Parse(string soapResponse)
         {
-            return new AttachedDevicesModel();
+            if (string.IsNullOrWhiteSpace(soapResponse))
+            {
+                return Enumerable.Empty<Device>();
+            }
+
+            var deviceInformation = ExtractDeviceInformation(soapResponse);
+            var devicesParser = new DevicesParser();
+            return devicesParser.Parse(deviceInformation);
+        }
+
+        private string ExtractDeviceInformation(string soapResponse)
+        {
+            try
+            {
+                var document = new XPathDocument(new StringReader(soapResponse));
+                var navigator = document.CreateNavigator();
+                var node = navigator.SelectSingleNode("//*/NewAttachDevice");
+                return node?.Value;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }
