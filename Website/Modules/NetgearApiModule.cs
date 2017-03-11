@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using BroadbandStats.NetgearRouter.Models;
 using BroadbandStats.NetgearRouter.Parsers;
 using Nancy;
@@ -23,18 +24,18 @@ namespace BroadbandStats.Website.Modules
 
             Post["/RecordRouterTraffic"] = _ =>
             {
-                var body = Request.Body.AsString();
-                var model = new RouterTrafficParser().Parse(body);
-                return RecordRouterTraffic(model);
+//                var body = Request.Body.AsString();
+//                var model = new RouterTrafficParser().Parse(body);
+                return RecordRouterTraffic();
             };
         }
 
-        private HttpStatusCode RecordRouterDevices(AttachedDevicesModel model)
+        private HttpStatusCode RecordRouterDevices(IEnumerable<Device> attachedDevices)
         {
             return HttpStatusCode.Created;
         }
 
-        private HttpStatusCode RecordRouterTraffic(TrafficStatsModel model)
+        private HttpStatusCode RecordRouterTraffic()
         {
             return HttpStatusCode.Created;
         }
