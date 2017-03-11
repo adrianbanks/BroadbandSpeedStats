@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetgearRouter", "NetgearRouter\NetgearRouter.csproj", "{318667B0-268F-426F-BAA5-99EC10C12151}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetgearRouter.Tests", "NetgearRouter.Tests\NetgearRouter.Tests.csproj", "{310F5A3C-5517-4295-A3A3-55CDDD2B3627}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{318667B0-268F-426F-BAA5-99EC10C12151}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{318667B0-268F-426F-BAA5-99EC10C12151}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{318667B0-268F-426F-BAA5-99EC10C12151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{310F5A3C-5517-4295-A3A3-55CDDD2B3627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{310F5A3C-5517-4295-A3A3-55CDDD2B3627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{310F5A3C-5517-4295-A3A3-55CDDD2B3627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{310F5A3C-5517-4295-A3A3-55CDDD2B3627}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
