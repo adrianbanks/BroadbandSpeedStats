@@ -961,12 +961,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\NetgearApiModule.cs" />
     <Compile Include="StartupInitialisation.cs" />
     <Content Include="Content\plugins\justgage\justgage-1.2.2.js" />
     <Content Include="Content\plugins\moment\moment-2.17.1.min.js" />
     <Compile Include="Modules\WebPageModule.cs" />
     <Compile Include="Models\SpeedTestRequest.cs" />
-    <Compile Include="Modules\APIModule.cs" />
+    <Compile Include="Modules\SpeedStatsApiModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1027,6 +1028,10 @@
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{605312f4-76d7-4e9e-9414-2f653b035a42}</Project>
       <Name>Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetgearRouter\NetgearRouter.csproj">
+      <Project>{318667B0-268F-426F-BAA5-99EC10C12151}</Project>
+      <Name>NetgearRouter</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -9,11 +9,11 @@ using Nancy.ModelBinding;
 
 namespace BroadbandSpeedTests.Website.Modules
 {
-    public class ApiModule : NancyModule
+    public class SpeedStatsApiModule : NancyModule
     {
         private readonly string connectionString;
 
-        public ApiModule() : base("/api")
+        public SpeedStatsApiModule() : base("/api")
         {
             connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
 
@@ -69,5 +69,5 @@ namespace BroadbandSpeedTests.Website.Modules
             //response.Headers.Location = new Uri("");
             return HttpStatusCode.Created;
         }
-    }
+   }
 }
