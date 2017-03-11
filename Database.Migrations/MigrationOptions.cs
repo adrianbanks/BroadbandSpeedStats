@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace BroadbandSpeedTests.Database.Migrations
+namespace BroadbandStats.Database.Migrations
 {
     internal sealed class MigrationOptions : IMigrationProcessorOptions
     {

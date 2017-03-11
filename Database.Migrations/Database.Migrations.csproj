@@ -7,8 +7,8 @@
     <ProjectGuid>{3919F3D0-B514-49B0-BFE5-CDCAA7B2DC22}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BroadbandSpeedTests.Database.Migrations</RootNamespace>
-    <AssemblyName>BroadbandSpeedTests.Database.Migrations</AssemblyName>
+    <RootNamespace>BroadbandStats.Database.Migrations</RootNamespace>
+    <AssemblyName>BroadbandStats.Database.Migrations</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

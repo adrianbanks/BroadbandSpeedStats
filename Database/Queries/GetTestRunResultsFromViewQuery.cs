@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using BroadbandSpeedStats.Database.Models;
-using BroadbandSpeedStats.Database.Schema;
+using BroadbandStats.Database.Models;
+using BroadbandStats.Database.Schema;
 
-namespace BroadbandSpeedStats.Database.Queries
+namespace BroadbandStats.Database.Queries
 {
     public abstract class GetTestRunResultsFromViewQuery
     {

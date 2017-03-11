@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
-using BroadbandSpeedTests.Database.Migrations;
+using BroadbandStats.Database.Migrations;
 using Nancy.Bootstrapper;
 
-namespace BroadbandSpeedTests.Website
+namespace BroadbandStats.Website
 {
     public sealed class StartupInitialisation : IApplicationStartup
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{318667B0-268F-426F-BAA5-99EC10C12151}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetgearRouter</RootNamespace>
-    <AssemblyName>NetgearRouter</AssemblyName>
+    <RootNamespace>BroadbandStats.NetgearRouter</RootNamespace>
+    <AssemblyName>BroadbandStats.NetgearRouter</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

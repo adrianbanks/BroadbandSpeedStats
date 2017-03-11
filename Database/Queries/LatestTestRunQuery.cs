@@ -1,6 +1,6 @@
-﻿using BroadbandSpeedStats.Database.Schema;
+﻿using BroadbandStats.Database.Schema;
 
-namespace BroadbandSpeedStats.Database.Queries
+namespace BroadbandStats.Database.Queries
 {
     public sealed class LatestTestRunQuery : GetTestRunResultsFromViewQuery
     {

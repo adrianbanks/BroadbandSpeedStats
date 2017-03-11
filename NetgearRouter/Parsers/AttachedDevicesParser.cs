@@ -1,6 +1,6 @@
-﻿using NetgearRouter.Models;
+﻿using BroadbandStats.NetgearRouter.Models;
 
-namespace NetgearRouter.Parsers
+namespace BroadbandStats.NetgearRouter.Parsers
 {
     public sealed class AttachedDevicesParser
     {

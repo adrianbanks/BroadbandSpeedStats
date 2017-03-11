@@ -1,4 +1,4 @@
-namespace NetgearRouter.Models
+namespace BroadbandStats.NetgearRouter.Models
 {
     public sealed class AttachedDevicesModel
     {

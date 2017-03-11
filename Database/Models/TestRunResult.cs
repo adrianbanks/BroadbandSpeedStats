@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BroadbandSpeedStats.Database.Models
+namespace BroadbandStats.Database.Models
 {
     public class TestRunResult
     {

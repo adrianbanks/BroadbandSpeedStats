@@ -1,13 +1,13 @@
-﻿using System.Configuration;
+using System.Configuration;
 using System.Linq;
-using BroadbandSpeedStats.Database.Commands;
-using BroadbandSpeedStats.Database.Models;
-using BroadbandSpeedStats.Database.Queries;
-using BroadbandSpeedTests.Website.Models;
+using BroadbandStats.Database.Commands;
+using BroadbandStats.Database.Models;
+using BroadbandStats.Database.Queries;
+using BroadbandStats.Website.Models;
 using Nancy;
 using Nancy.ModelBinding;
 
-namespace BroadbandSpeedTests.Website.Modules
+namespace BroadbandStats.Website.Modules
 {
     public class SpeedStatsApiModule : NancyModule
     {

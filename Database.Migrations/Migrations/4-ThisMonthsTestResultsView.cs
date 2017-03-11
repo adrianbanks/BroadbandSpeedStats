@@ -1,7 +1,7 @@
-﻿using BroadbandSpeedStats.Database.Schema;
+﻿using BroadbandStats.Database.Schema;
 using FluentMigrator;
 
-namespace BroadbandSpeedTests.Database.Migrations.Migrations
+namespace BroadbandStats.Database.Migrations.Migrations
 {
     [Migration(20170302)]
     public class ThisMonthsTestResultsView : Migration

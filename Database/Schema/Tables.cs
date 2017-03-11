@@ -1,4 +1,4 @@
-﻿namespace BroadbandSpeedStats.Database.Schema
+﻿namespace BroadbandStats.Database.Schema
 {
     public static class Tables
     {

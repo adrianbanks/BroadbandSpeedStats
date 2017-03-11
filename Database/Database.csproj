@@ -7,8 +7,8 @@
     <ProjectGuid>{605312F4-76D7-4E9E-9414-2F653B035A42}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BroadbandSpeedStats.Database</RootNamespace>
-    <AssemblyName>BroadbandSpeedStats.Database</AssemblyName>
+    <RootNamespace>BroadbandStats.Database</RootNamespace>
+    <AssemblyName>BroadbandStats.Database</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

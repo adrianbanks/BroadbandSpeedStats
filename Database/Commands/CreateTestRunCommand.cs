@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
-using BroadbandSpeedStats.Database.Schema;
+using BroadbandStats.Database.Schema;
 
-namespace BroadbandSpeedStats.Database.Commands
+namespace BroadbandStats.Database.Commands
 {
     public class CreateTestRunCommand
     {

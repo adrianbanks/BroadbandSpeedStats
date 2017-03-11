@@ -1,10 +1,10 @@
 ﻿using System.Configuration;
+using BroadbandStats.NetgearRouter.Models;
+using BroadbandStats.NetgearRouter.Parsers;
 using Nancy;
 using Nancy.Extensions;
-using NetgearRouter.Models;
-using NetgearRouter.Parsers;
 
-namespace BroadbandSpeedTests.Website.Modules
+namespace BroadbandStats.Website.Modules
 {
     public sealed class NetgearApiModule : NancyModule
     {

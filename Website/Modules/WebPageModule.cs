@@ -1,6 +1,6 @@
 ﻿using Nancy;
 
-namespace BroadbandSpeedTests.Website.Modules
+namespace BroadbandStats.Website.Modules
 {
     public class WebPageModule : NancyModule
     {

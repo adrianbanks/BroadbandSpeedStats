@@ -4,7 +4,7 @@ using FluentMigrator.Runner.Announcers;
 using FluentMigrator.Runner.Initialization;
 using FluentMigrator.Runner.Processors.SqlServer;
 
-namespace BroadbandSpeedTests.Database.Migrations
+namespace BroadbandStats.Database.Migrations
 {
     public sealed class Migrator
     {
