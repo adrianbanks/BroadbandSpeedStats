@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Xml.XPath;
 
 namespace BroadbandStats.NetgearRouter.Devices
 {
     public sealed class AttachedDevicesParser
     {
         private readonly IDevicesParser devicesParser;
+        private readonly DeviceInformationExtractor deviceInformationExtractor;
 
-        public AttachedDevicesParser(IDevicesParser devicesParser)
+        public AttachedDevicesParser(IDevicesParser devicesParser, DeviceInformationExtractor deviceInformationExtractor)
         {
             if (devicesParser == null)
             {
                 throw new ArgumentNullException(nameof(devicesParser));
             }
 
+            if (deviceInformationExtractor == null)
+            {
+                throw new ArgumentNullException(nameof(deviceInformationExtractor));
+            }
+
             this.devicesParser = devicesParser;
+            this.deviceInformationExtractor = deviceInformationExtractor;
         }
 
         public IEnumerable<Device> Parse(string soapResponse)
@@ -27,23 +32,8 @@ namespace BroadbandStats.NetgearRouter.Devices
                 return Enumerable.Empty<Device>();
             }
 
-            var deviceInformation = ExtractDeviceInformation(soapResponse);
+            var deviceInformation = deviceInformationExtractor.ExtractDeviceInformation(soapResponse);
             return devicesParser.Parse(deviceInformation);
-        }
-
-        private string ExtractDeviceInformation(string soapResponse)
-        {
-            try
-            {
-                var document = new XPathDocument(new StringReader(soapResponse));
-                var navigator = document.CreateNavigator();
-                var node = navigator.SelectSingleNode("//*/NewAttachDevice");
-                return node?.Value;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace NetgearRouter.Tests.Devices
         [TestCase("gibberish")]
         public void ShouldFailWhenGivenInvalidInput(string soapResponse)
         {
-            var parser = new AttachedDevicesParser(new DevicesParser(new DeviceParser()));
+            var parser = new AttachedDevicesParser(new DevicesParser(new DeviceParser()), new DeviceInformationExtractor());
             var attachedDevices = parser.Parse(soapResponse);
             attachedDevices.Count().ShouldBe(0);
         }
@@ -22,7 +22,7 @@ namespace NetgearRouter.Tests.Devices
         [Test]
         public void ShouldParseDevicesCorrectly()
         {
-            var parser = new AttachedDevicesParser(new DevicesParser(new DeviceParser()));
+            var parser = new AttachedDevicesParser(new DevicesParser(new DeviceParser()), new DeviceInformationExtractor());
             var attachedDevices = parser.Parse(ExampleSoapResponse);
             attachedDevices.Count().ShouldBe(4);
         }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Devices\Device.cs" />
     <Compile Include="Devices\AttachedDevicesParser.cs" />
+    <Compile Include="Devices\DeviceInformationExtractor.cs" />
     <Compile Include="Devices\DeviceParser.cs" />
     <Compile Include="Devices\DevicesParser.cs" />
     <Compile Include="Devices\FilteredDevicesParser.cs" />

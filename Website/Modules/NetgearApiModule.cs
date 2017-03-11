@@ -17,7 +17,7 @@ namespace BroadbandStats.Website.Modules
             Post["/RecordRouterDevices"] = _ =>
             {
                 var body = Request.Body.AsString();
-                var attachedDevicesParser = new AttachedDevicesParser(new FilteredDevicesParser(new DevicesParser(new DeviceParser())));
+                var attachedDevicesParser = new AttachedDevicesParser(new FilteredDevicesParser(new DevicesParser(new DeviceParser())), new DeviceInformationExtractor());
                 var model = attachedDevicesParser.Parse(body);
                 return RecordRouterDevices(model);
             };
