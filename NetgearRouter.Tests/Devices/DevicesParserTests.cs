@@ -13,7 +13,7 @@ namespace NetgearRouter.Tests.Devices
         [TestCase("  ")]
         public void ParsingShouldFailOnInvalidInput(string devicesInformation)
         {
-            var parser = new DevicesParser(new DeviceParser());
+            var parser = new DevicesParser(new FakeDeviceParser());
             var devices = parser.Parse(devicesInformation);
             devices.Count().ShouldBe(0);
         }
@@ -23,7 +23,7 @@ namespace NetgearRouter.Tests.Devices
         [TestCase("3@device1@device2")]
         public void ParsingShouldFailWhenGivenIncompleteInformation(string devicesInformation)
         {
-            var parser = new DevicesParser(new DeviceParser());
+            var parser = new DevicesParser(new FakeDeviceParser());
             var devices = parser.Parse(devicesInformation);
             devices.Count().ShouldBe(0);
         }
@@ -34,9 +34,25 @@ namespace NetgearRouter.Tests.Devices
         [TestCase("3@device1@device2@device3@", 3)]
         public void ParsingShouldReturnTheCorrectNumberOfDevices(string devicesInformation, int expectedNumberOfDevices)
         {
-            var parser = new DevicesParser(new DeviceParser());
+            var parser = new DevicesParser(new FakeDeviceParser());
             var devices = parser.Parse(devicesInformation);
             devices.Count().ShouldBe(expectedNumberOfDevices);
+        }
+
+        [Test]
+        public void ParsingShouldIgnoreAnyDevicesThatFailedToParse()
+        {
+            var parser = new DevicesParser(new DeviceParser());
+            var devices = parser.Parse("2@gibberish@id2;ipAddress2;name2;macAddress2;connectionType2@");
+            devices.Count().ShouldBe(1);
+        }
+
+        private sealed class FakeDeviceParser : IDeviceParser
+        {
+            public Device Parse(string deviceInformation)
+            {
+                return new Device("name", "ip address", "mac address", "connection type");
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace BroadbandStats.NetgearRouter.Devices
 {
-    public class DeviceParser
+    public sealed class DeviceParser : IDeviceParser
     {
         // device information is in the form:
         //      id;ip address;name;mac address;connection type
