@@ -52,6 +52,7 @@
     <Compile Include="Devices\DeviceInformationExtractorTests.cs" />
     <Compile Include="Devices\DevicesParserTests.cs" />
     <Compile Include="Devices\DeviceParserTests.cs" />
+    <Compile Include="Devices\EndToEndTests\AttachedDevicesParserTests.cs" />
     <Compile Include="Devices\FilteredDevicesParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,6 +65,7 @@
       <Name>NetgearRouter</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

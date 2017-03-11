@@ -14,7 +14,7 @@ namespace NetgearRouter.Tests.Devices
         [TestCase("  ")]
         public void ShouldFailWhenGivenInvalidInput(string soapResponse)
         {
-            var parser = new AttachedDevicesParser(new DevicesParser(new DeviceParser()), new DeviceInformationExtractor());
+            var parser = new AttachedDevicesParser(new FakeDevicesParser(), new DeviceInformationExtractor());
             var attachedDevices = parser.Parse(soapResponse);
             attachedDevices.Count().ShouldBe(0);
         }
