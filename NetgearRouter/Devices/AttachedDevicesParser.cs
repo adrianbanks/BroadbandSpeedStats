@@ -8,6 +8,18 @@ namespace BroadbandStats.NetgearRouter.Devices
 {
     public sealed class AttachedDevicesParser
     {
+        private readonly IDevicesParser devicesParser;
+
+        public AttachedDevicesParser(IDevicesParser devicesParser)
+        {
+            if (devicesParser == null)
+            {
+                throw new ArgumentNullException(nameof(devicesParser));
+            }
+
+            this.devicesParser = devicesParser;
+        }
+
         public IEnumerable<Device> Parse(string soapResponse)
         {
             if (string.IsNullOrWhiteSpace(soapResponse))
@@ -16,7 +28,6 @@ namespace BroadbandStats.NetgearRouter.Devices
             }
 
             var deviceInformation = ExtractDeviceInformation(soapResponse);
-            var devicesParser = new FilteredDevicesParser(new DevicesParser(new DeviceParser()));
             return devicesParser.Parse(deviceInformation);
         }
 
