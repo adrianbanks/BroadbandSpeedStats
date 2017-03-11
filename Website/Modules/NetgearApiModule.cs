@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
 using BroadbandStats.NetgearRouter.Devices;
 using Nancy;
 using Nancy.Extensions;
@@ -8,16 +8,20 @@ namespace BroadbandStats.Website.Modules
 {
     public sealed class NetgearApiModule : NancyModule
     {
-        private readonly string connectionString;
+        private readonly AttachedDevicesParser attachedDevicesParser;
 
-        public NetgearApiModule() : base("/netgear")
+        public NetgearApiModule(AttachedDevicesParser attachedDevicesParser) : base("/netgear")
         {
-            connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
+            if (attachedDevicesParser == null)
+            {
+                throw new ArgumentNullException(nameof(attachedDevicesParser));
+            }
+
+            this.attachedDevicesParser = attachedDevicesParser;
 
             Post["/RecordRouterDevices"] = _ =>
             {
                 var body = Request.Body.AsString();
-                var attachedDevicesParser = new AttachedDevicesParser(new FilteredDevicesParser(new DevicesParser(new DeviceParser())), new DeviceInformationExtractor());
                 var model = attachedDevicesParser.Parse(body);
                 return RecordRouterDevices(model);
             };
