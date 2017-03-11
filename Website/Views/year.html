@@ -215,7 +215,7 @@
         var downloadSpeedChart = createChart('downloadSpeedChart', 'Mbit/s');
         var uploadSpeedChart = createChart('uploadSpeedChart', 'Mbit/s');
 
-        $.getJSON('/api/ThisYearsTestResults', function (data) {
+        $.getJSON('/speed/ThisYearsTestResults', function (data) {
             console.log('Todays data: ' + JSON.stringify(data));
 
             populateChartData(data, 'ping', pingChart, function (result) {

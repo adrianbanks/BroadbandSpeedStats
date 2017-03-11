@@ -13,7 +13,7 @@ namespace BroadbandSpeedTests.Website.Modules
     {
         private readonly string connectionString;
 
-        public SpeedStatsApiModule() : base("/api")
+        public SpeedStatsApiModule() : base("/speed")
         {
             connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
 
