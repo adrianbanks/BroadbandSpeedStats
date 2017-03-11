@@ -16,7 +16,7 @@ namespace BroadbandStats.NetgearRouter.Devices
             }
 
             var deviceInformation = ExtractDeviceInformation(soapResponse);
-            var devicesParser = new DevicesParser();
+            var devicesParser = new DevicesParser(new DeviceParser());
             return devicesParser.Parse(deviceInformation);
         }
 

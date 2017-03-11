@@ -11,6 +11,18 @@ namespace BroadbandStats.NetgearRouter.Devices
         //
         // e.g. 3@device1@device2@device3@
 
+        private readonly DeviceParser deviceParser;
+
+        public DevicesParser(DeviceParser deviceParser)
+        {
+            if (deviceParser == null)
+            {
+                throw new ArgumentNullException(nameof(deviceParser));
+            }
+
+            this.deviceParser = deviceParser;
+        }
+
         public IEnumerable<Device> Parse(string devicesInformation)
         {
             if (string.IsNullOrWhiteSpace(devicesInformation))
@@ -32,8 +44,6 @@ namespace BroadbandStats.NetgearRouter.Devices
             {
                 yield break;
             }
-
-            var deviceParser = new DeviceParser();
 
             foreach (var deviceInformation in parts.Skip(1))
             {

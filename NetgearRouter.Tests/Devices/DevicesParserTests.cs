@@ -13,7 +13,7 @@ namespace NetgearRouter.Tests.Devices
         [TestCase("  ")]
         public void ParsingShouldFailOnInvalidInput(string devicesInformation)
         {
-            var parser = new DevicesParser();
+            var parser = new DevicesParser(new DeviceParser());
             var devices = parser.Parse(devicesInformation);
             devices.Count().ShouldBe(0);
         }
@@ -23,7 +23,7 @@ namespace NetgearRouter.Tests.Devices
         [TestCase("3@device1@device2")]
         public void ParsingShouldFailWhenGivenIncompleteInformation(string devicesInformation)
         {
-            var parser = new DevicesParser();
+            var parser = new DevicesParser(new DeviceParser());
             var devices = parser.Parse(devicesInformation);
             devices.Count().ShouldBe(0);
         }
@@ -34,7 +34,7 @@ namespace NetgearRouter.Tests.Devices
         [TestCase("3@device1@device2@device3@", 3)]
         public void ParsingShouldReturnTheCorrectNumberOfDevices(string devicesInformation, int expectedNumberOfDevices)
         {
-            var parser = new DevicesParser();
+            var parser = new DevicesParser(new DeviceParser());
             var devices = parser.Parse(devicesInformation);
             devices.Count().ShouldBe(expectedNumberOfDevices);
         }
