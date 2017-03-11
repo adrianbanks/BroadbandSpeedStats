@@ -38,7 +38,5 @@ namespace NetgearRouter.Tests.Devices
             var devices = parser.Parse(devicesInformation);
             devices.Count().ShouldBe(expectedNumberOfDevices);
         }
-
-        private const string ExampleInformation = "4@1;192.168.1.2;ANDROID-device;00:00:00:00:00:00;wireless@2;192.168.1.3;BOBS-IPHONE;12:34:56:78:90:AB;wireless@3;192.168.1.4;IPAD;BA:09:87:65:43:21;wireless@4;192.168.1.5;LAPTOP;FF:FF:FF:FF:FF:FF;wireless@";
     }
 }
