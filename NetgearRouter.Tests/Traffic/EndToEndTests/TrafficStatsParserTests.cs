@@ -22,22 +22,16 @@ namespace NetgearRouter.Tests.Traffic.EndToEndTests
             yesterday.Upload.ShouldBe(348.93f);
 
             var thisWeek = trafficStats.ThisWeek;
-            thisWeek.Download.Total.ShouldBe(32769);
-            thisWeek.Download.DailyAverage.ShouldBe(32769);
-            thisWeek.Upload.Total.ShouldBe(2700);
-            thisWeek.Upload.DailyAverage.ShouldBe(385.78f);
+            thisWeek.Download.ShouldBe(32769);
+            thisWeek.Upload.ShouldBe(2700);
 
             var thisMonth = trafficStats.ThisMonth;
-            thisMonth.Download.Total.ShouldBe(38032);
-            thisMonth.Download.DailyAverage.ShouldBe(1267);
-            thisMonth.Upload.Total.ShouldBe(3271);
-            thisMonth.Upload.DailyAverage.ShouldBe(109.05f);
+            thisMonth.Download.ShouldBe(38032);
+            thisMonth.Upload.ShouldBe(3271);
 
             var lastMonth = trafficStats.LastMonth;
-            lastMonth.Download.Total.ShouldBe(38032);
-            lastMonth.Download.DailyAverage.ShouldBe(1267);
-            lastMonth.Upload.Total.ShouldBe(3271);
-            lastMonth.Upload.DailyAverage.ShouldBe(109.05f);
+            lastMonth.Download.ShouldBe(38032);
+            lastMonth.Upload.ShouldBe(3271);
         }
 
         private const string ExampleSoapResponse = @"<?xml version=""1.0"" encoding=""UTF-8""?>

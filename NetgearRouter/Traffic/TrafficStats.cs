@@ -1,56 +1,47 @@
-﻿namespace BroadbandStats.NetgearRouter.Traffic
+﻿using System;
+
+namespace BroadbandStats.NetgearRouter.Traffic
 {
     public sealed class TrafficStats
     {
         public Bandwidth Today { get; }
         public Bandwidth Yesterday { get; }
-        public BandwidthWithAverages ThisWeek { get; }
-        public BandwidthWithAverages ThisMonth { get; }
-        public BandwidthWithAverages LastMonth { get; }
+        public Bandwidth ThisWeek { get; }
+        public Bandwidth ThisMonth { get; }
+        public Bandwidth LastMonth { get; }
 
-        public TrafficStats(Bandwidth today, Bandwidth yesterday, BandwidthWithAverages thisWeek, BandwidthWithAverages thisMonth, BandwidthWithAverages lastMonth)
+        public TrafficStats(Bandwidth today, Bandwidth yesterday, Bandwidth thisWeek, Bandwidth thisMonth, Bandwidth lastMonth)
         {
+            if (today == null)
+            {
+                throw new ArgumentNullException(nameof(today));
+            }
+
+            if (yesterday == null)
+            {
+                throw new ArgumentNullException(nameof(yesterday));
+            }
+
+            if (thisWeek == null)
+            {
+                throw new ArgumentNullException(nameof(thisWeek));
+            }
+
+            if (thisMonth == null)
+            {
+                throw new ArgumentNullException(nameof(thisMonth));
+            }
+
+            if (lastMonth == null)
+            {
+                throw new ArgumentNullException(nameof(lastMonth));
+            }
+
             Today = today;
             Yesterday = yesterday;
             ThisWeek = thisWeek;
             ThisMonth = thisMonth;
             LastMonth = lastMonth;
-        }
-    }
-
-    public sealed class Bandwidth
-    {
-        public float Download { get; }
-        public float Upload { get; }
-
-        public Bandwidth(float download, float upload)
-        {
-            Download = download;
-            Upload = upload;
-        }
-    }
-
-    public sealed class BandwidthWithAverages
-    {
-        public BandwidthWithDailyAverage Download { get; }
-        public BandwidthWithDailyAverage Upload { get; }
-
-        public BandwidthWithAverages(BandwidthWithDailyAverage download, BandwidthWithDailyAverage upload)
-        {
-            Download = download;
-            Upload = upload;
-        }
-    }
-
-    public class BandwidthWithDailyAverage
-    {
-        public float Total { get; }
-        public float DailyAverage { get; }
-
-        public BandwidthWithDailyAverage(float total, float dailyAverage)
-        {
-            Total = total;
-            DailyAverage = dailyAverage;
         }
     }
 }
