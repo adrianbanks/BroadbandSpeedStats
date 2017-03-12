@@ -1,14 +1,43 @@
-﻿using NUnit.Framework;
+﻿using BroadbandStats.NetgearRouter.Traffic;
+using NUnit.Framework;
+using Shouldly;
 
 namespace NetgearRouter.Tests.Traffic.EndToEndTests
 {
     [TestFixture]
-    public class TrafficStatsParserTests
+    public sealed class TrafficStatsParserTests
     {
         [Test]
-        public void Test()
+        public void TheSoapResponseIsParsedCorrectly()
         {
-            Assert.Fail("TODO");
+            var parser = new TrafficStatsParser();
+            var trafficStats = parser.Parse(ExampleSoapResponse);
+
+            var today = trafficStats.Today;
+            today.Download.ShouldBe(3176);
+            today.Upload.ShouldBe(284.44f);
+
+            var yesterday = trafficStats.Yesterday;
+            yesterday.Download.ShouldBe(7639);
+            yesterday.Upload.ShouldBe(348.93f);
+
+            var thisWeek = trafficStats.ThisWeek;
+            thisWeek.Download.Total.ShouldBe(32769);
+            thisWeek.Download.DailyAverage.ShouldBe(32769);
+            thisWeek.Upload.Total.ShouldBe(2700);
+            thisWeek.Upload.DailyAverage.ShouldBe(385.78f);
+
+            var thisMonth = trafficStats.ThisMonth;
+            thisMonth.Download.Total.ShouldBe(38032);
+            thisMonth.Download.DailyAverage.ShouldBe(1267);
+            thisMonth.Upload.Total.ShouldBe(3271);
+            thisMonth.Upload.DailyAverage.ShouldBe(109.05f);
+
+            var lastMonth = trafficStats.LastMonth;
+            lastMonth.Download.Total.ShouldBe(38032);
+            lastMonth.Download.DailyAverage.ShouldBe(1267);
+            lastMonth.Upload.Total.ShouldBe(3271);
+            lastMonth.Upload.DailyAverage.ShouldBe(109.05f);
         }
 
         private const string ExampleSoapResponse = @"<?xml version=""1.0"" encoding=""UTF-8""?>
