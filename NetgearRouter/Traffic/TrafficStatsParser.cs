@@ -20,16 +20,23 @@ namespace BroadbandStats.NetgearRouter.Traffic
         {
             var bandwidthInformation = bandwidthInformationExtractor.ExtractBandwidthInformation(soapResponse);
 
+            if (bandwidthInformation == null)
+            {
+                return null;
+            }
+
             float download;
 
-            if (!float.TryParse(bandwidthInformation.Download, out download))
+            if (string.IsNullOrWhiteSpace(bandwidthInformation.Download)
+                || !float.TryParse(bandwidthInformation.Download, out download))
             {
                 return null;
             }
 
             float upload;
 
-            if (!float.TryParse(bandwidthInformation.Upload, out upload))
+            if (string.IsNullOrWhiteSpace(bandwidthInformation.Upload)
+                || !float.TryParse(bandwidthInformation.Upload, out upload))
             {
                 return null;
             }
