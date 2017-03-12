@@ -15,38 +15,36 @@ namespace BroadbandStats.Website.Modules.SpeedStats
                 throw new ArgumentNullException(nameof(connectionStringProvider));
             }
 
-            var connectionString = connectionStringProvider.GetConnectionString();
-
-            Get["/LastTestResult"] = _ => GetLastTestResult(connectionString);
-            Get["/TodaysTestResults"] = _ => GetTodaysResults(connectionString);
-            Get["/ThisWeeksTestResults"] = _ => GetThisWeeksResults(connectionString);
-            Get["/ThisMonthsTestResults"] = _ => GetThisMonthsResults(connectionString);
-            Get["/ThisYearsTestResults"] = _ => GetThisYearsResults(connectionString);
+            Get["/LastTestResult"] = _ => GetLastTestResult(connectionStringProvider);
+            Get["/TodaysTestResults"] = _ => GetTodaysResults(connectionStringProvider);
+            Get["/ThisWeeksTestResults"] = _ => GetThisWeeksResults(connectionStringProvider);
+            Get["/ThisMonthsTestResults"] = _ => GetThisMonthsResults(connectionStringProvider);
+            Get["/ThisYearsTestResults"] = _ => GetThisYearsResults(connectionStringProvider);
         }
 
-        private TestRunResult GetLastTestResult(string connectionString)
+        private TestRunResult GetLastTestResult(ConnectionStringProvider connectionStringProvider)
         {
-            return new LatestTestRunQuery().Run(connectionString).SingleOrDefault();
+            return new LatestTestRunQuery(connectionStringProvider).Run().SingleOrDefault();
         }
 
-        private object GetTodaysResults(string connectionString)
+        private object GetTodaysResults(ConnectionStringProvider connectionStringProvider)
         {
-            return new TodaysResultsQuery().Run(connectionString);
+            return new TodaysResultsQuery(connectionStringProvider).Run();
         }
 
-        private object GetThisWeeksResults(string connectionString)
+        private object GetThisWeeksResults(ConnectionStringProvider connectionStringProvider)
         {
-            return new ThisWeeksResultsQuery().Run(connectionString);
+            return new ThisWeeksResultsQuery(connectionStringProvider).Run();
         }
 
-        private object GetThisMonthsResults(string connectionString)
+        private object GetThisMonthsResults(ConnectionStringProvider connectionStringProvider)
         {
-            return new ThisMonthsResultsQuery().Run(connectionString);
+            return new ThisMonthsResultsQuery(connectionStringProvider).Run();
         }
 
-        private object GetThisYearsResults(string connectionString)
+        private object GetThisYearsResults(ConnectionStringProvider connectionStringProvider)
         {
-            return new ThisYearsResultsQuery().Run(connectionString);
+            return new ThisYearsResultsQuery(connectionStringProvider).Run();
         }
    }
 }

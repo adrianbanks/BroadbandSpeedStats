@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using BroadbandStats.Database.Models;
 using BroadbandStats.Database.Schema;
@@ -7,10 +8,24 @@ namespace BroadbandStats.Database.Queries
 {
     public abstract class GetTestRunResultsFromViewQuery
     {
+        private readonly IConnectionStringProvider connectionStringProvider;
+
+        protected GetTestRunResultsFromViewQuery(IConnectionStringProvider connectionStringProvider)
+        {
+            if (connectionStringProvider == null)
+            {
+                throw new ArgumentNullException(nameof(connectionStringProvider));
+            }
+
+            this.connectionStringProvider = connectionStringProvider;
+        }
+
         protected abstract string ViewName { get; }
 
-        public IEnumerable<TestRunResult> Run(string connectionString)
+        public IEnumerable<TestRunResult> Run()
         {
+            var connectionString = connectionStringProvider.GetConnectionString();
+
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
