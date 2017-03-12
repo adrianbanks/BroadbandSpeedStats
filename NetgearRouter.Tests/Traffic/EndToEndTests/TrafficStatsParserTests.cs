@@ -10,7 +10,7 @@ namespace NetgearRouter.Tests.Traffic.EndToEndTests
         [Test]
         public void TheSoapResponseIsParsedCorrectly()
         {
-            var parser = new TrafficStatsParser();
+            var parser = new TrafficStatsParser(new BandwidthInformationExtractor());
             var trafficStats = parser.Parse(ExampleSoapResponse);
             trafficStats.Download.ShouldBe(3176);
             trafficStats.Upload.ShouldBe(284.44f);
