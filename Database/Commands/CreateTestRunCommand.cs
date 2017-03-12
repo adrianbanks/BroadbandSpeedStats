@@ -4,14 +4,27 @@ using BroadbandStats.Database.Schema;
 
 namespace BroadbandStats.Database.Commands
 {
-    public class CreateTestRunCommand
+    public sealed class CreateTestRunCommand
     {
-        public void Execute(string connectionString,
-            DateTime timestamp, float pingTime, float downloadSpeed, float uploadSpeed,
+        private readonly IConnectionStringProvider connectionStringProvider;
+
+        public CreateTestRunCommand(IConnectionStringProvider connectionStringProvider)
+        {
+            if (connectionStringProvider == null)
+            {
+                throw new ArgumentNullException(nameof(connectionStringProvider));
+            }
+
+            this.connectionStringProvider = connectionStringProvider;
+        }
+
+        public void Execute(DateTime timestamp, float pingTime, float downloadSpeed, float uploadSpeed,
             string serverId, string serverName, string serverHost, string serverUrl, string serverUrl2,
             float serverLatency, float serverDistance, string serverLatitude, string serverLongitude,
             string serverCountry, string serverCountryCode, string serverSponsor)
         {
+            var connectionString = connectionStringProvider.GetConnectionString();
+
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
