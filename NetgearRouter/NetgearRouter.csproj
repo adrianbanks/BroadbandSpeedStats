@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Traffic\BandwidthInformation.cs" />
     <Compile Include="Traffic\BandwidthInformationExtractor.cs" />
+    <Compile Include="Traffic\IBandwidthInformationExtractor.cs" />
     <Compile Include="Traffic\TrafficStats.cs" />
     <Compile Include="Traffic\TrafficStatsParser.cs" />
   </ItemGroup>

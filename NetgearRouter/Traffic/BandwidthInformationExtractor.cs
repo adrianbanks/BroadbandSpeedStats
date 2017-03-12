@@ -4,7 +4,7 @@ using System.Xml.XPath;
 
 namespace BroadbandStats.NetgearRouter.Traffic
 {
-    public sealed class BandwidthInformationExtractor
+    public sealed class BandwidthInformationExtractor : IBandwidthInformationExtractor
     {
         public BandwidthInformation ExtractBandwidthInformation(string soapResponse)
         {

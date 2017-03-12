@@ -4,9 +4,9 @@ namespace BroadbandStats.NetgearRouter.Traffic
 {
     public sealed class TrafficStatsParser
     {
-        private readonly BandwidthInformationExtractor bandwidthInformationExtractor;
+        private readonly IBandwidthInformationExtractor bandwidthInformationExtractor;
 
-        public TrafficStatsParser(BandwidthInformationExtractor bandwidthInformationExtractor)
+        public TrafficStatsParser(IBandwidthInformationExtractor bandwidthInformationExtractor)
         {
             if (bandwidthInformationExtractor == null)
             {
