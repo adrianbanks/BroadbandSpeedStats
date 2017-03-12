@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using BroadbandStats.Database.Models;
 using BroadbandStats.Database.Queries;
 using Nancy;
 
@@ -8,43 +6,18 @@ namespace BroadbandStats.Website.Modules.SpeedStats
 {
     public class QueryApiModule : NancyModule
     {
-        public QueryApiModule(ConnectionStringProvider connectionStringProvider) : base("/speed")
+        public QueryApiModule(QueryRepository queryRepository) : base("/speed")
         {
-            if (connectionStringProvider == null)
+            if (queryRepository == null)
             {
-                throw new ArgumentNullException(nameof(connectionStringProvider));
+                throw new ArgumentNullException(nameof(queryRepository));
             }
 
-            Get["/LastTestResult"] = _ => GetLastTestResult(connectionStringProvider);
-            Get["/TodaysTestResults"] = _ => GetTodaysResults(connectionStringProvider);
-            Get["/ThisWeeksTestResults"] = _ => GetThisWeeksResults(connectionStringProvider);
-            Get["/ThisMonthsTestResults"] = _ => GetThisMonthsResults(connectionStringProvider);
-            Get["/ThisYearsTestResults"] = _ => GetThisYearsResults(connectionStringProvider);
+            Get["/LastTestResult"] = _ => queryRepository.GetLastTestResult();
+            Get["/TodaysTestResults"] = _ => queryRepository.GetTodaysResults();
+            Get["/ThisWeeksTestResults"] = _ => queryRepository.GetThisWeeksResults();
+            Get["/ThisMonthsTestResults"] = _ => queryRepository.GetThisMonthsResults();
+            Get["/ThisYearsTestResults"] = _ => queryRepository.GetThisYearsResults();
         }
-
-        private TestRunResult GetLastTestResult(ConnectionStringProvider connectionStringProvider)
-        {
-            return new LatestTestRunQuery(connectionStringProvider).Run().SingleOrDefault();
-        }
-
-        private object GetTodaysResults(ConnectionStringProvider connectionStringProvider)
-        {
-            return new TodaysResultsQuery(connectionStringProvider).Run();
-        }
-
-        private object GetThisWeeksResults(ConnectionStringProvider connectionStringProvider)
-        {
-            return new ThisWeeksResultsQuery(connectionStringProvider).Run();
-        }
-
-        private object GetThisMonthsResults(ConnectionStringProvider connectionStringProvider)
-        {
-            return new ThisMonthsResultsQuery(connectionStringProvider).Run();
-        }
-
-        private object GetThisYearsResults(ConnectionStringProvider connectionStringProvider)
-        {
-            return new ThisYearsResultsQuery(connectionStringProvider).Run();
-        }
-   }
+    }
 }

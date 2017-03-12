@@ -46,6 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\GetTestRunResultsFromViewQuery.cs" />
     <Compile Include="Queries\LatestTestRunQuery.cs" />
+    <Compile Include="Queries\QueryRepository.cs" />
     <Compile Include="Queries\ThisMonthsResultsQuery.cs" />
     <Compile Include="Queries\ThisWeeksResultsQuery.cs" />
     <Compile Include="Queries\ThisYearsResultsQuery.cs" />
