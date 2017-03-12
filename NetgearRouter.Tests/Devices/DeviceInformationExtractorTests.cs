@@ -21,12 +21,12 @@ namespace NetgearRouter.Tests.Devices
 
         [TestCase("1@device1@")]
         [TestCase("2@device1@device2@")]
-        public void ShouldExtractDeviceInformationCorrectly(string expeectedDeviceInformation)
+        public void ShouldExtractDeviceInformationCorrectly(string expectedDeviceInformation)
         {
-            var soapResponse = string.Format(SoapBoilerPlate, expeectedDeviceInformation);
+            var soapResponse = string.Format(SoapBoilerPlate, expectedDeviceInformation);
             var extractor = new DeviceInformationExtractor();
             var deviceInformation = extractor.ExtractDeviceInformation(soapResponse);
-            deviceInformation.ShouldBe(expeectedDeviceInformation);
+            deviceInformation.ShouldBe(expectedDeviceInformation);
         }
 
         private const string SoapBoilerPlate = @"<?xml version=""1.0"" encoding=""UTF-8""?>
