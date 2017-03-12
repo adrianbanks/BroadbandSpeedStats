@@ -961,6 +961,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionStringProvider.cs" />
     <Compile Include="Modules\Netgear\TrafficStatsApiModule.cs" />
     <Compile Include="Modules\Netgear\AttachedDevicesApiModule.cs" />
     <Compile Include="StartupInitialisation.cs" />

@@ -1,4 +1,4 @@
-using System.Configuration;
+using System;
 using System.Linq;
 using BroadbandStats.Database.Commands;
 using BroadbandStats.Database.Models;
@@ -13,9 +13,14 @@ namespace BroadbandStats.Website.Modules
     {
         private readonly string connectionString;
 
-        public SpeedStatsApiModule() : base("/speed")
+        public SpeedStatsApiModule(ConnectionStringProvider connectionStringProvider) : base("/speed")
         {
-            connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
+            if (connectionStringProvider == null)
+            {
+                throw new ArgumentNullException(nameof(connectionStringProvider));
+            }
+
+            connectionString = connectionStringProvider.GetConnectionString();
 
             Get["/LastTestResult"] = _ => GetLastTestResult();
             Get["/TodaysTestResults"] = _ => GetTodaysResults();
