@@ -8,11 +8,17 @@ namespace BroadbandStats.Website.Modules.Netgear
 {
     public sealed class TrafficStatsApiModule : NancyModule
     {
-        public TrafficStatsApiModule(TrafficStatsParser trafficStatsParser, CreateTrafficStatsCommand createTrafficStatsCommand) : base("/netgear")
+        public TrafficStatsApiModule(TrafficStatsParser trafficStatsParser, CreateTrafficStatsCommand createTrafficStatsCommand)
+            : base("/netgear")
         {
             if (trafficStatsParser == null)
             {
                 throw new ArgumentNullException(nameof(trafficStatsParser));
+            }
+
+            if (createTrafficStatsCommand == null)
+            {
+                throw new ArgumentNullException(nameof(createTrafficStatsCommand));
             }
 
             Post["/RecordTrafficStats"] = _ =>
