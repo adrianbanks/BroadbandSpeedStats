@@ -49,7 +49,6 @@
     <Compile Include="Devices\IDeviceParser.cs" />
     <Compile Include="Devices\IDevicesParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Traffic\Bandwidth.cs" />
     <Compile Include="Traffic\TrafficStats.cs" />
     <Compile Include="Traffic\TrafficStatsParser.cs" />
   </ItemGroup>

@@ -12,26 +12,8 @@ namespace NetgearRouter.Tests.Traffic.EndToEndTests
         {
             var parser = new TrafficStatsParser();
             var trafficStats = parser.Parse(ExampleSoapResponse);
-
-            var today = trafficStats.Today;
-            today.Download.ShouldBe(3176);
-            today.Upload.ShouldBe(284.44f);
-
-            var yesterday = trafficStats.Yesterday;
-            yesterday.Download.ShouldBe(7639);
-            yesterday.Upload.ShouldBe(348.93f);
-
-            var thisWeek = trafficStats.ThisWeek;
-            thisWeek.Download.ShouldBe(32769);
-            thisWeek.Upload.ShouldBe(2700);
-
-            var thisMonth = trafficStats.ThisMonth;
-            thisMonth.Download.ShouldBe(38032);
-            thisMonth.Upload.ShouldBe(3271);
-
-            var lastMonth = trafficStats.LastMonth;
-            lastMonth.Download.ShouldBe(38032);
-            lastMonth.Upload.ShouldBe(3271);
+            trafficStats.Download.ShouldBe(3176);
+            trafficStats.Upload.ShouldBe(284.44f);
         }
 
         private const string ExampleSoapResponse = @"<?xml version=""1.0"" encoding=""UTF-8""?>
