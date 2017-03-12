@@ -28,6 +28,19 @@
             }
         }
 
+        public static class TrafficStats
+        {
+            public const string Name = nameof(TrafficStats);
+
+            public static class Columns
+            {
+                public const string Id                  = "Id";
+                public const string Timestamp           = "Timestamp";
+                public const string Download            = "Download";
+                public const string Upload              = "Upload";
+            }
+        }
+
         public static class AttachedDevices
         {
             public const string Name = nameof(AttachedDevices);

@@ -8,6 +8,12 @@ namespace BroadbandStats.Database.Migrations.Migrations
     {
         public override void Up()
         {
+            Create.Table(Tables.TrafficStats.Name)
+                .WithColumn(Tables.TrafficStats.Columns.Id).AsInt32().NotNullable().PrimaryKey().Identity()
+                .WithColumn(Tables.TrafficStats.Columns.Timestamp).AsDateTime().NotNullable()
+                .WithColumn(Tables.TrafficStats.Columns.Download).AsFloat().NotNullable()
+                .WithColumn(Tables.TrafficStats.Columns.Upload).AsFloat().NotNullable();
+
             Create.Table(Tables.AttachedDevices.Name)
                 .WithColumn(Tables.AttachedDevices.Columns.Id).AsInt32().NotNullable().PrimaryKey().Identity()
                 .WithColumn(Tables.AttachedDevices.Columns.Timestamp).AsDateTime().NotNullable()
@@ -30,6 +36,7 @@ namespace BroadbandStats.Database.Migrations.Migrations
         {
             Delete.Table(Tables.Devices.Name);
             Delete.Table(Tables.AttachedDevices.Name);
+            Delete.Table(Tables.TrafficStats.Name);
         }
     }
 }
