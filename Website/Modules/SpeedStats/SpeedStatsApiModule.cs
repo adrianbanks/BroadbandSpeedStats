@@ -35,5 +35,5 @@ namespace BroadbandStats.Website.Modules.SpeedStats
 
             return HttpStatusCode.Created;
         }
-   }
+    }
 }

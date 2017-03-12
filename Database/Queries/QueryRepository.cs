@@ -7,41 +7,73 @@ namespace BroadbandStats.Database.Queries
 {
     public sealed class QueryRepository
     {
-        private readonly IConnectionStringProvider connectionStringProvider;
+        private readonly LatestTestRunQuery latestTestRunQuery;
+        private readonly TodaysResultsQuery todaysResultsQuery;
+        private readonly ThisWeeksResultsQuery thisWeeksResultsQuery;
+        private readonly ThisMonthsResultsQuery thisMonthsResultsQuery;
+        private readonly ThisYearsResultsQuery thisYearsResultsQuery;
 
-        public QueryRepository(IConnectionStringProvider connectionStringProvider)
+        public QueryRepository(LatestTestRunQuery latestTestRunQuery,
+            TodaysResultsQuery todaysResultsQuery,
+            ThisWeeksResultsQuery thisWeeksResultsQuery,
+            ThisMonthsResultsQuery thisMonthsResultsQuery,
+            ThisYearsResultsQuery thisYearsResultsQuery)
         {
-            if (connectionStringProvider == null)
+            if (latestTestRunQuery == null)
             {
-                throw new ArgumentNullException(nameof(connectionStringProvider));
+                throw new ArgumentNullException(nameof(latestTestRunQuery));
             }
 
-            this.connectionStringProvider = connectionStringProvider;
+            if (todaysResultsQuery == null)
+            {
+                throw new ArgumentNullException(nameof(todaysResultsQuery));
+            }
+
+            if (thisWeeksResultsQuery == null)
+            {
+                throw new ArgumentNullException(nameof(thisWeeksResultsQuery));
+            }
+
+            if (thisMonthsResultsQuery == null)
+            {
+                throw new ArgumentNullException(nameof(thisMonthsResultsQuery));
+            }
+
+            if (thisYearsResultsQuery == null)
+            {
+                throw new ArgumentNullException(nameof(thisYearsResultsQuery));
+            }
+
+            this.latestTestRunQuery = latestTestRunQuery;
+            this.todaysResultsQuery = todaysResultsQuery;
+            this.thisWeeksResultsQuery = thisWeeksResultsQuery;
+            this.thisMonthsResultsQuery = thisMonthsResultsQuery;
+            this.thisYearsResultsQuery = thisYearsResultsQuery;
         }
 
         public TestRunResult GetLastTestResult()
         {
-            return new LatestTestRunQuery(connectionStringProvider).Run().SingleOrDefault();
+            return latestTestRunQuery.Run().SingleOrDefault();
         }
 
         public IEnumerable<TestRunResult> GetTodaysResults()
         {
-            return new TodaysResultsQuery(connectionStringProvider).Run();
+            return todaysResultsQuery.Run();
         }
 
         public IEnumerable<TestRunResult> GetThisWeeksResults()
         {
-            return new ThisWeeksResultsQuery(connectionStringProvider).Run();
+            return thisWeeksResultsQuery.Run();
         }
 
         public IEnumerable<TestRunResult> GetThisMonthsResults()
         {
-            return new ThisMonthsResultsQuery(connectionStringProvider).Run();
+            return thisMonthsResultsQuery.Run();
         }
 
         public IEnumerable<TestRunResult> GetThisYearsResults()
         {
-            return new ThisYearsResultsQuery(connectionStringProvider).Run();
+            return thisYearsResultsQuery.Run();
         }
     }
 }
