@@ -8,7 +8,7 @@ namespace NetgearRouter.Tests.Devices.EndToEndTests
     [TestFixture]
     public sealed class AttachedDevicesParserTests
     {
-        public void Foo()
+        public void TheSoapResponseIsParsedCorrectly()
         {
             var parser = new AttachedDevicesParser(new DevicesParser(new DeviceParser()), new DeviceInformationExtractor());
             var devices = parser.Parse(ExampleSoapResponse).ToArray();
