@@ -961,7 +961,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modules\NetgearApiModule.cs" />
+    <Compile Include="Modules\Netgear\TrafficStatsApiModule.cs" />
+    <Compile Include="Modules\Netgear\AttachedDevicesApiModule.cs" />
     <Compile Include="StartupInitialisation.cs" />
     <Content Include="Content\plugins\justgage\justgage-1.2.2.js" />
     <Content Include="Content\plugins\moment\moment-2.17.1.min.js" />
