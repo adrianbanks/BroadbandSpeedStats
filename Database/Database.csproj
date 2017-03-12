@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CreateTestRunCommand.cs" />
+    <Compile Include="Commands\CreateTrafficStatsCommand.cs" />
     <Compile Include="ConnectionStringProvider.cs" />
     <Compile Include="Models\TestRunResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
