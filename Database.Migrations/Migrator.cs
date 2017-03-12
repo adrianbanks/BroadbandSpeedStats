@@ -1,4 +1,5 @@
 ﻿using System;
+using BroadbandStats.Database.Migrations.Migrations;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Announcers;
 using FluentMigrator.Runner.Initialization;
@@ -32,7 +33,7 @@ namespace BroadbandStats.Database.Migrations
             var options = new MigrationOptions { PreviewOnly = false, Timeout = 60 };
             var announcer = new NullAnnouncer();
             var processor = new SqlServer2012ProcessorFactory().Create(connectionString, announcer, options);
-            var migrationContext = new RunnerContext(announcer) { Namespace = "BroadbandSpeedTests.Database.Migrations.Migrations" };
+            var migrationContext = new RunnerContext(announcer) { Namespace = typeof(InitialDatabase).Namespace };
 
             var runner = new MigrationRunner(GetType().Assembly, migrationContext, processor);
             runner.MigrateUp(targetVersion, true);
