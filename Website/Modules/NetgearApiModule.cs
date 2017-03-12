@@ -24,16 +24,16 @@ namespace BroadbandStats.Website.Modules
 
             Post["/RecordAttachedDevices"] = _ =>
             {
-                var body = Request.Body.AsString();
-                var model = attachedDevicesParser.Parse(body);
-                return RecordAttachedDevices(model);
+                var requestBody = Request.Body.AsString();
+                var attachedDevices = attachedDevicesParser.Parse(requestBody);
+                return RecordAttachedDevices(attachedDevices);
             };
 
             Post["/RecordTrafficStats"] = _ =>
             {
-                var body = Request.Body.AsString();
-                var model = trafficStatsParser.Parse(body);
-                return RecordTrafficStats(model);
+                var requestBody = Request.Body.AsString();
+                var trafficStats = trafficStatsParser.Parse(requestBody);
+                return RecordTrafficStats(trafficStats);
             };
         }
 
