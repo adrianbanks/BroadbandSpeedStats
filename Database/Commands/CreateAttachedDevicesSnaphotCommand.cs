@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using BroadbandStats.Database.Schema;
 
@@ -36,12 +37,15 @@ INSERT INTO {Tables.AttachedDeviceSnapshots.Name}
 )
 VALUES
 (
-    '{timestamp:yyyy-MM-d HH:mm:ss}',
-    {attachedDeviceCount}
+    @timestamp,
+    @attachedDeviceCount
 )
 
 SELECT SCOPE_IDENTITY();
 ";
+                    command.Parameters.Add("@timestamp", SqlDbType.DateTime).Value = timestamp;
+                    command.Parameters.Add("@attachedDeviceCount", SqlDbType.Int).Value = attachedDeviceCount;
+
                     var snapshotIdentity = Convert.ToInt32(command.ExecuteScalar());
                     return snapshotIdentity;
                 }

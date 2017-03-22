@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using BroadbandStats.Database.Schema;
 
@@ -30,8 +31,11 @@ namespace BroadbandStats.Database.Queries
                 {
                     command.CommandText = $@"
 SELECT * FROM {Tables.Devices.Name}
-WHERE [{Tables.Devices.Columns.DeviceName}] = '{deviceName}'
-AND [{Tables.Devices.Columns.MacAddress}] = '{deviceMacAddress}'";
+WHERE [{Tables.Devices.Columns.DeviceName}] = @deviceName
+AND [{Tables.Devices.Columns.MacAddress}] = @deviceMacAddress";
+
+                    command.Parameters.Add("@deviceName", SqlDbType.NVarChar, 255).Value = deviceName;
+                    command.Parameters.Add("@deviceMacAddress", SqlDbType.NVarChar, 17).Value = deviceMacAddress;
 
                     var deviceId = command.ExecuteScalar();
                     return deviceId == DBNull.Value ? 0 : Convert.ToInt32(deviceId);

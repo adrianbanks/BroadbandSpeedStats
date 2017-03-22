@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using BroadbandStats.Database.Schema;
 
@@ -42,6 +43,10 @@ VALUES
     {upload}
 )
 ";
+                    command.Parameters.Add("@timestamp", SqlDbType.DateTime).Value = timestamp;
+                    command.Parameters.Add("@download", SqlDbType.Float).Value = download;
+                    command.Parameters.Add("@upload", SqlDbType.Float).Value = upload;
+
                     command.ExecuteNonQuery();
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using BroadbandStats.Database.Schema;
 
@@ -38,12 +39,18 @@ INSERT INTO {Tables.AttachedDevices.Name}
 )
 VALUES
 (
-    {snapshotIdentity},
-    {deviceId},
-    '{deviceIpAddress}',
-    '{deviceConnectionType}'
+    @snapshotIdentity,
+    @deviceId,
+    @deviceIpAddress,
+    @deviceConnectionType
 )
 ";
+
+                    command.Parameters.Add("@snapshotIdentity", SqlDbType.Int).Value = snapshotIdentity;
+                    command.Parameters.Add("@deviceId", SqlDbType.Int).Value = deviceId;
+                    command.Parameters.Add("@deviceIpAddress", SqlDbType.NVarChar, 15).Value = deviceIpAddress;
+                    command.Parameters.Add("@deviceConnectionType", SqlDbType.NVarChar, 255).Value = deviceConnectionType;
+
                     command.ExecuteNonQuery();
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using BroadbandStats.Database.Schema;
 
@@ -53,24 +54,42 @@ INSERT INTO {Tables.TestRuns.Name}
 )
 VALUES
 (
-    '{timestamp:yyyy-MM-d HH:mm:ss}',
-    {pingTime},
-    {downloadSpeed},
-    {uploadSpeed},
-    '{serverId}',
-    '{serverName}',
-    '{serverHost}',
-    '{serverUrl}',
-    '{serverUrl2}',
-    {serverLatency},
-    {serverDistance},
-    '{serverLatitude}',
-    '{serverLongitude}',
-    '{serverCountry}',
-    '{serverCountryCode}',
-    '{serverSponsor}'
+    @timestamp,
+    @pingTime,
+    @downloadSpeed,
+    @uploadSpeed,
+    @serverId,
+    @serverName,
+    @serverHost,
+    @serverUrl,
+    @serverUrl2,
+    @serverLatency,
+    @serverDistance,
+    @serverLatitude,
+    @serverLongitude,
+    @serverCountry,
+    @serverCountryCode,
+    @serverSponsor
 )
 ";
+
+                    command.Parameters.Add("@timestamp", SqlDbType.NVarChar).Value = timestamp;
+                    command.Parameters.Add("@pingTime", SqlDbType.Float).Value = pingTime;
+                    command.Parameters.Add("@downloadSpeed", SqlDbType.Float).Value = downloadSpeed;
+                    command.Parameters.Add("@uploadSpeed", SqlDbType.Float).Value = uploadSpeed;
+                    command.Parameters.Add("@serverId", SqlDbType.NVarChar, 6).Value = serverId;
+                    command.Parameters.Add("@serverName", SqlDbType.NVarChar, 255).Value = serverName;
+                    command.Parameters.Add("@serverHost", SqlDbType.NVarChar, 255).Value = serverHost;
+                    command.Parameters.Add("@serverUrl", SqlDbType.NVarChar, 255).Value = serverUrl;
+                    command.Parameters.Add("@serverUrl2", SqlDbType.NVarChar, 255).Value = serverUrl2;
+                    command.Parameters.Add("@serverLatency", SqlDbType.Float).Value = serverLatency;
+                    command.Parameters.Add("@serverDistance", SqlDbType.Float).Value = serverDistance;
+                    command.Parameters.Add("@serverLatitude", SqlDbType.NVarChar, 15).Value = serverLatitude;
+                    command.Parameters.Add("@serverLongitude", SqlDbType.NVarChar, 15).Value = serverLongitude;
+                    command.Parameters.Add("@serverCountry", SqlDbType.NVarChar, 255).Value = serverCountry;
+                    command.Parameters.Add("@serverCountryCode", SqlDbType.NVarChar, 3).Value = serverCountryCode;
+                    command.Parameters.Add("@serverSponsor", SqlDbType.NVarChar, 255).Value = serverSponsor;
+
                     command.ExecuteNonQuery();
                 }
             }

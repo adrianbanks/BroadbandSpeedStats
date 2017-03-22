@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using BroadbandStats.Database.Schema;
 
@@ -36,12 +37,16 @@ INSERT INTO {Tables.Devices.Name}
 )
 VALUES
 (
-    '{deviceName}',
-    '{deviceMacAddress}'
+    @deviceName,
+    @deviceMacAddress
 )
 
 SELECT SCOPE_IDENTITY();
 ";
+
+                    command.Parameters.Add("@deviceName", SqlDbType.NVarChar, 255).Value = deviceName;
+                    command.Parameters.Add("@deviceMacAddress", SqlDbType.NVarChar, 17).Value = deviceMacAddress;
+
                     var deviceId = Convert.ToInt32(command.ExecuteScalar());
                     return deviceId;
                 }
