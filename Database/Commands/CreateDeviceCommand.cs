@@ -4,11 +4,11 @@ using BroadbandStats.Database.Schema;
 
 namespace BroadbandStats.Database.Commands
 {
-    public sealed class CreateDeviceSnapshotEntryCommand
+    public sealed class CreateDeviceCommand
     {
         private readonly IConnectionStringProvider connectionStringProvider;
 
-        public CreateDeviceSnapshotEntryCommand(IConnectionStringProvider connectionStringProvider)
+        public CreateDeviceCommand(IConnectionStringProvider connectionStringProvider)
         {
             if (connectionStringProvider == null)
             {
@@ -18,7 +18,7 @@ namespace BroadbandStats.Database.Commands
             this.connectionStringProvider = connectionStringProvider;
         }
 
-        public void Execute(int snapshotIdentity, int deviceId, string deviceIpAddress, string deviceConnectionType)
+        public int Execute(string deviceName, string deviceMacAddress)
         {
             var connectionString = connectionStringProvider.GetConnectionString();
 
@@ -29,22 +29,21 @@ namespace BroadbandStats.Database.Commands
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText = $@"
-INSERT INTO {Tables.AttachedDevices.Name}
+INSERT INTO {Tables.Devices.Name}
 (
-    [{Tables.AttachedDevices.Columns.SnapshotId}],
-    [{Tables.AttachedDevices.Columns.DeviceId}],
-    [{Tables.AttachedDevices.Columns.IpAddress}],
-    [{Tables.AttachedDevices.Columns.ConnectionType}]
+    [{Tables.Devices.Columns.DeviceName}],
+    [{Tables.Devices.Columns.MacAddress}]
 )
 VALUES
 (
-    {snapshotIdentity},
-    {deviceId},
-    '{deviceIpAddress}',
-    '{deviceConnectionType}'
+    '{deviceName}',
+    '{deviceMacAddress}'
 )
+
+SELECT SCOPE_IDENTITY();
 ";
-                    command.ExecuteNonQuery();
+                    var deviceId = Convert.ToInt32(command.ExecuteScalar());
+                    return deviceId;
                 }
             }
         }

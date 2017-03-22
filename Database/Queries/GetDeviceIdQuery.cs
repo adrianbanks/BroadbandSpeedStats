@@ -2,13 +2,13 @@
 using System.Data.SqlClient;
 using BroadbandStats.Database.Schema;
 
-namespace BroadbandStats.Database.Commands
+namespace BroadbandStats.Database.Queries
 {
-    public sealed class CreateDeviceSnapshotEntryCommand
+    public sealed class GetDeviceIdQuery
     {
         private readonly IConnectionStringProvider connectionStringProvider;
 
-        public CreateDeviceSnapshotEntryCommand(IConnectionStringProvider connectionStringProvider)
+        public GetDeviceIdQuery(IConnectionStringProvider connectionStringProvider)
         {
             if (connectionStringProvider == null)
             {
@@ -18,7 +18,7 @@ namespace BroadbandStats.Database.Commands
             this.connectionStringProvider = connectionStringProvider;
         }
 
-        public void Execute(int snapshotIdentity, int deviceId, string deviceIpAddress, string deviceConnectionType)
+        public int Run(string deviceName, string deviceMacAddress)
         {
             var connectionString = connectionStringProvider.GetConnectionString();
 
@@ -29,22 +29,12 @@ namespace BroadbandStats.Database.Commands
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText = $@"
-INSERT INTO {Tables.AttachedDevices.Name}
-(
-    [{Tables.AttachedDevices.Columns.SnapshotId}],
-    [{Tables.AttachedDevices.Columns.DeviceId}],
-    [{Tables.AttachedDevices.Columns.IpAddress}],
-    [{Tables.AttachedDevices.Columns.ConnectionType}]
-)
-VALUES
-(
-    {snapshotIdentity},
-    {deviceId},
-    '{deviceIpAddress}',
-    '{deviceConnectionType}'
-)
-";
-                    command.ExecuteNonQuery();
+SELECT * FROM {Tables.Devices.Name}
+WHERE [{Tables.Devices.Columns.DeviceName}] = '{deviceName}'
+AND [{Tables.Devices.Columns.MacAddress}] = '{deviceMacAddress}'";
+
+                    var deviceId = command.ExecuteScalar();
+                    return deviceId == DBNull.Value ? 0 : Convert.ToInt32(deviceId);
                 }
             }
         }

@@ -29,10 +29,10 @@ namespace BroadbandStats.Database.Commands
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText = $@"
-INSERT INTO {Tables.AttachedDevices.Name}
+INSERT INTO {Tables.AttachedDeviceSnapshots.Name}
 (
-    [{Tables.AttachedDevices.Columns.Timestamp}],
-    [{Tables.AttachedDevices.Columns.DeviceCount}]
+    [{Tables.AttachedDeviceSnapshots.Columns.Timestamp}],
+    [{Tables.AttachedDeviceSnapshots.Columns.DeviceCount}]
 )
 VALUES
 (
@@ -46,7 +46,6 @@ SELECT SCOPE_IDENTITY();
                     return snapshotIdentity;
                 }
             }
-
         }
     }
 }

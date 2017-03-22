@@ -41,9 +41,9 @@
             }
         }
 
-        public static class AttachedDevices
+        public static class AttachedDeviceSnapshots
         {
-            public const string Name = nameof(AttachedDevices);
+            public const string Name = nameof(AttachedDeviceSnapshots);
 
             public static class Columns
             {
@@ -60,10 +60,21 @@
             public static class Columns
             {
                 public const string Id                  = "DeviceId";
-                public const string SnapshotId          = "SnaphostId";
                 public const string DeviceName          = "Name";
-                public const string IpAddress           = "IpAddress";
                 public const string MacAddress          = "MacAddress";
+            }
+        }
+
+        public static class AttachedDevices
+        {
+            public const string Name = nameof(AttachedDevices);
+
+            public static class Columns
+            {
+                public const string Id                  = "Id";
+                public const string SnapshotId          = "SnapshotId";
+                public const string DeviceId            = "DeviceId";
+                public const string IpAddress           = "IpAddress";
                 public const string ConnectionType      = "ConnectionType";
             }
         }
