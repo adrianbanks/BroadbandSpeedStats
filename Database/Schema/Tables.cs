@@ -47,7 +47,7 @@
 
             public static class Columns
             {
-                public const string Id                  = "SnaphostId";
+                public const string Id                  = "SnapshotId";
                 public const string Timestamp           = "Timestamp";
                 public const string DeviceCount         = "DeviceCount";
             }
