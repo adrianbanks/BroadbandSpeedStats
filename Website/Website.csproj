@@ -951,26 +951,27 @@
     <Content Include="Views\navbar.html" />
     <Content Include="Views\left-sidebar.html" />
     <Content Include="Views\master.html" />
-    <Content Include="Views\month.html" />
-    <Content Include="Views\year.html" />
-    <Content Include="Views\week.html" />
-    <Content Include="Views\day.html" />
-    <Content Include="Views\starter.html" />
+    <Content Include="Views\speed\month.html" />
+    <Content Include="Views\speed\year.html" />
+    <Content Include="Views\speed\week.html" />
+    <Content Include="Views\speed\day.html" />
+    <Content Include="Views\speed\dials.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionStringProvider.cs" />
-    <Compile Include="Modules\Netgear\TrafficStatsApiModule.cs" />
-    <Compile Include="Modules\Netgear\AttachedDevicesApiModule.cs" />
-    <Compile Include="Modules\SpeedStats\QueryApiModule.cs" />
+    <Compile Include="Modules\Api\Netgear\TrafficStatsApiModule.cs" />
+    <Compile Include="Modules\Api\Netgear\AttachedDevicesApiModule.cs" />
+    <Compile Include="Modules\Api\Speed\QueryApiModule.cs" />
+    <Compile Include="Modules\WebPageModule.cs" />
     <Compile Include="StartupInitialisation.cs" />
     <Content Include="Content\plugins\justgage\justgage-1.2.2.js" />
     <Content Include="Content\plugins\moment\moment-2.17.1.min.js" />
-    <Compile Include="Modules\WebPageModule.cs" />
+    <Compile Include="Modules\Speed\SpeedModule.cs" />
     <Compile Include="Models\SpeedTestRequest.cs" />
-    <Compile Include="Modules\SpeedStats\SpeedStatsApiModule.cs" />
+    <Compile Include="Modules\Api\Speed\SpeedStatsApiModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1036,6 +1037,10 @@
       <Project>{318667B0-268F-426F-BAA5-99EC10C12151}</Project>
       <Name>NetgearRouter</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\bandwidth\" />
+    <Folder Include="Views\devices\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

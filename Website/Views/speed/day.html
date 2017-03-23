@@ -102,8 +102,8 @@
 @EndSection
 
 @Section['PageScripts']
-<script src="Content/plugins/moment/moment-2.17.1.min.js"></script>
-<script src="Content/plugins/chartjs/chart.min.js"></script>
+<script src="/Content/plugins/moment/moment-2.17.1.min.js"></script>
+<script src="/Content/plugins/chartjs/chart.min.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -214,7 +214,7 @@
         var downloadSpeedChart = createChart('downloadSpeedChart', 'Mbit/s');
         var uploadSpeedChart = createChart('uploadSpeedChart', 'Mbit/s');
 
-        $.getJSON('/speed/TodaysTestResults', function (data) {
+        $.getJSON('/api/speed/TodaysTestResults', function (data) {
             console.log('Todays data: ' + JSON.stringify(data));
 
             populateChartData(data, 'ping', pingChart, function (result) {

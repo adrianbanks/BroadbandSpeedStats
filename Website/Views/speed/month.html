@@ -3,7 +3,7 @@
 @Section['MainContent']
     <section class="content-header">
       <h1>
-        This week&apos;s results
+        This month&apos;s results
         <small id="testTime"></small>
       </h1>
     </section>
@@ -102,8 +102,8 @@
 @EndSection
 
 @Section['PageScripts']
-<script src="Content/plugins/moment/moment-2.17.1.min.js"></script>
-<script src="Content/plugins/chartjs/chart.min.js"></script>
+<script src="/Content/plugins/moment/moment-2.17.1.min.js"></script>
+<script src="/Content/plugins/chartjs/chart.min.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -115,8 +115,8 @@
                     callbacks: {
                         title: function (tooltipItem, data) {
                             var item = tooltipItem[0];
-                            var time = moment(item.xLabel).format("HH:mm");
-                            return time + "    " + item.yLabel + " " + units;
+                            var date = moment(item.xLabel).format("DD MMM HH:mm");
+                            return date + "    " + item.yLabel + " " + units;
                         },
                         label: function (tooltipItems, data) {
                             return null;
@@ -215,7 +215,7 @@
         var downloadSpeedChart = createChart('downloadSpeedChart', 'Mbit/s');
         var uploadSpeedChart = createChart('uploadSpeedChart', 'Mbit/s');
 
-        $.getJSON('/speed/ThisWeeksTestResults', function (data) {
+        $.getJSON('/api/speed/ThisMonthsTestResults', function (data) {
             console.log('Todays data: ' + JSON.stringify(data));
 
             populateChartData(data, 'ping', pingChart, function (result) {

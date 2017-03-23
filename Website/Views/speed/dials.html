@@ -86,13 +86,13 @@
 @EndSection
 
 @Section['PageScripts']
-<script src="Content/plugins/justgage/raphael-2.1.4.min.js"></script>
-<script src="Content/plugins/justgage/justgage-1.2.2.js"></script>
-<script src="Content/plugins/moment/moment-2.17.1.min.js"></script>
+<script src="/Content/plugins/justgage/raphael-2.1.4.min.js"></script>
+<script src="/Content/plugins/justgage/justgage-1.2.2.js"></script>
+<script src="/Content/plugins/moment/moment-2.17.1.min.js"></script>
 
 <script>
     $(document).ready(function() {
-        $.getJSON('/speed/LastTestResult', function (data) {
+        $.getJSON('/api/speed/LastTestResult', function (data) {
             console.log('Latest test data: ' + JSON.stringify(data));
 
             var timeOfTest = moment(data.timestamp);

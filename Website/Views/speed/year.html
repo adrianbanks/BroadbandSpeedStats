@@ -3,7 +3,7 @@
 @Section['MainContent']
     <section class="content-header">
       <h1>
-        This month&apos;s results
+        This year&apos;s results
         <small id="testTime"></small>
       </h1>
     </section>
@@ -102,8 +102,8 @@
 @EndSection
 
 @Section['PageScripts']
-<script src="Content/plugins/moment/moment-2.17.1.min.js"></script>
-<script src="Content/plugins/chartjs/chart.min.js"></script>
+<script src="/Content/plugins/moment/moment-2.17.1.min.js"></script>
+<script src="/Content/plugins/chartjs/chart.min.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -215,7 +215,7 @@
         var downloadSpeedChart = createChart('downloadSpeedChart', 'Mbit/s');
         var uploadSpeedChart = createChart('uploadSpeedChart', 'Mbit/s');
 
-        $.getJSON('/speed/ThisMonthsTestResults', function (data) {
+        $.getJSON('/api/speed/ThisYearsTestResults', function (data) {
             console.log('Todays data: ' + JSON.stringify(data));
 
             populateChartData(data, 'ping', pingChart, function (result) {
