@@ -7,7 +7,7 @@ using BroadbandStats.NetgearRouter.Devices;
 using Nancy;
 using Nancy.Extensions;
 
-namespace BroadbandStats.Website.Modules.Netgear
+namespace BroadbandStats.Website.Modules.Api.Netgear
 {
     public sealed class AttachedDevicesApiModule : NancyModule
     {
@@ -16,7 +16,7 @@ namespace BroadbandStats.Website.Modules.Netgear
             CreateDeviceCommand createDeviceCommand,
             CreateAttachedDevicesSnaphotCommand createAttachedDevicesSnaphotCommand,
             CreateDeviceSnapshotEntryCommand createDeviceSnapshotEntryCommand)
-            : base("/netgear")
+            : base("/api/netgear")
         {
             if (getDeviceQuery == null)
             {

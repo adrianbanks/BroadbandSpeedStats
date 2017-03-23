@@ -2,11 +2,11 @@ using System;
 using BroadbandStats.Database.Queries;
 using Nancy;
 
-namespace BroadbandStats.Website.Modules.SpeedStats
+namespace BroadbandStats.Website.Modules.Api.Speed
 {
     public class QueryApiModule : NancyModule
     {
-        public QueryApiModule(QueryRepository queryRepository) : base("/speed")
+        public QueryApiModule(QueryRepository queryRepository) : base("/api/speed")
         {
             if (queryRepository == null)
             {

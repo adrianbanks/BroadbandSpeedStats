@@ -4,11 +4,11 @@ using BroadbandStats.Website.Models;
 using Nancy;
 using Nancy.ModelBinding;
 
-namespace BroadbandStats.Website.Modules.SpeedStats
+namespace BroadbandStats.Website.Modules.Api.Speed
 {
     public class SpeedStatsApiModule : NancyModule
     {
-        public SpeedStatsApiModule(CreateTestRunCommand createTestRunCommand) : base("/speed")
+        public SpeedStatsApiModule(CreateTestRunCommand createTestRunCommand) : base("/api/speed")
         {
             if (createTestRunCommand == null)
             {

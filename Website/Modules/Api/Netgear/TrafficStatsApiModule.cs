@@ -4,12 +4,12 @@ using BroadbandStats.NetgearRouter.Traffic;
 using Nancy;
 using Nancy.Extensions;
 
-namespace BroadbandStats.Website.Modules.Netgear
+namespace BroadbandStats.Website.Modules.Api.Netgear
 {
     public sealed class TrafficStatsApiModule : NancyModule
     {
         public TrafficStatsApiModule(TrafficStatsParser trafficStatsParser, CreateTrafficStatsCommand createTrafficStatsCommand)
-            : base("/netgear")
+            : base("/api/netgear")
         {
             if (trafficStatsParser == null)
             {
