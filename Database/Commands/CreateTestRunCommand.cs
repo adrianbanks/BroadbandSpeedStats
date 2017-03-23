@@ -81,7 +81,7 @@ VALUES
                     command.Parameters.Add("@serverName", SqlDbType.NVarChar, 255).Value = serverName;
                     command.Parameters.Add("@serverHost", SqlDbType.NVarChar, 255).Value = serverHost;
                     command.Parameters.Add("@serverUrl", SqlDbType.NVarChar, 255).Value = serverUrl;
-                    command.Parameters.Add("@serverUrl2", SqlDbType.NVarChar, 255).Value = serverUrl2;
+                    command.Parameters.Add("@serverUrl2", SqlDbType.NVarChar, 255).Value = serverUrl2 ?? (object) DBNull.Value;
                     command.Parameters.Add("@serverLatency", SqlDbType.Float).Value = serverLatency;
                     command.Parameters.Add("@serverDistance", SqlDbType.Float).Value = serverDistance;
                     command.Parameters.Add("@serverLatitude", SqlDbType.NVarChar, 15).Value = serverLatitude;
