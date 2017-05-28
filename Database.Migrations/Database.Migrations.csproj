@@ -58,6 +58,7 @@
     <Compile Include="Migrations\2-TodaysTestResultsView.cs" />
     <Compile Include="Migrations\1-FullTestResultInfo.cs" />
     <Compile Include="Migrations\8-DeviceDescription.cs" />
+    <Compile Include="Migrations\9-CurrentDevices.cs" />
     <Compile Include="Migrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
