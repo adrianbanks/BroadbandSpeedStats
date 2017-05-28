@@ -7,18 +7,25 @@ namespace BroadbandStats.Database.Queries
 {
     public sealed class QueryRepository
     {
+        private readonly CurrentlyAttachedDevicesQuery currentlyAttachedDevicesQuery;
         private readonly LatestTestRunQuery latestTestRunQuery;
         private readonly TodaysResultsQuery todaysResultsQuery;
         private readonly ThisWeeksResultsQuery thisWeeksResultsQuery;
         private readonly ThisMonthsResultsQuery thisMonthsResultsQuery;
         private readonly ThisYearsResultsQuery thisYearsResultsQuery;
 
-        public QueryRepository(LatestTestRunQuery latestTestRunQuery,
+        public QueryRepository(CurrentlyAttachedDevicesQuery currentlyAttachedDevicesQuery,
+            LatestTestRunQuery latestTestRunQuery,
             TodaysResultsQuery todaysResultsQuery,
             ThisWeeksResultsQuery thisWeeksResultsQuery,
             ThisMonthsResultsQuery thisMonthsResultsQuery,
             ThisYearsResultsQuery thisYearsResultsQuery)
         {
+            if (currentlyAttachedDevicesQuery == null)
+            {
+                throw new ArgumentNullException(nameof(currentlyAttachedDevicesQuery));
+            }
+
             if (latestTestRunQuery == null)
             {
                 throw new ArgumentNullException(nameof(latestTestRunQuery));
@@ -44,11 +51,17 @@ namespace BroadbandStats.Database.Queries
                 throw new ArgumentNullException(nameof(thisYearsResultsQuery));
             }
 
+            this.currentlyAttachedDevicesQuery = currentlyAttachedDevicesQuery;
             this.latestTestRunQuery = latestTestRunQuery;
             this.todaysResultsQuery = todaysResultsQuery;
             this.thisWeeksResultsQuery = thisWeeksResultsQuery;
             this.thisMonthsResultsQuery = thisMonthsResultsQuery;
             this.thisYearsResultsQuery = thisYearsResultsQuery;
+        }
+
+        public IEnumerable<ConnectedDevice> GetCurrentlyAttachedDevices()
+        {
+            return currentlyAttachedDevicesQuery.Run();
         }
 
         public TestRunResult GetLastTestResult()

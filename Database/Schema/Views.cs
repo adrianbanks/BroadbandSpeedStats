@@ -2,6 +2,34 @@
 {
     public static class Views
     {
+        public static class CurrentDeviceSnapshot
+        {
+            public const string Name = "CurrentDeviceSnapshot";
+            public const string SourceTable = Tables.AttachedDevices.Name;
+
+            public static class Columns
+            {
+                public const string SnapshotId        = Tables.AttachedDevices.Columns.SnapshotId;
+            }
+        }
+
+        public static class CurrentlyConnectedDevices
+        {
+            public const string Name = "CurrentlyConnectedDevices";
+            public const string SourceTable = Tables.Devices.Name;
+
+            public static class Columns
+            {
+                public const string DeviceId          = Tables.Devices.Columns.Id;
+                public const string DeviceName        = Tables.Devices.Columns.DeviceName;
+                public const string DeviceDescription = Tables.Devices.Columns.Description;
+                public const string MacAddress        = Tables.Devices.Columns.MacAddress;
+                public const string IpAddress         = Tables.AttachedDevices.Columns.IpAddress;
+                public const string ConnectionType    = Tables.AttachedDevices.Columns.ConnectionType;
+                public const string SnapshotId        = Tables.AttachedDeviceSnapshots.Columns.Id;
+            }
+        }
+
         public static class LatestTestRun
         {
             public const string Name = "LatestTestRun";
