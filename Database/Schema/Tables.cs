@@ -62,6 +62,7 @@
                 public const string Id                  = "DeviceId";
                 public const string DeviceName          = "Name";
                 public const string MacAddress          = "MacAddress";
+                public const string Description         = "Description";
             }
         }
 

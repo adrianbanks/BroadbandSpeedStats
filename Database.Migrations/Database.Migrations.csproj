@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="MigrationOptions.cs" />
     <Compile Include="Migrations\0-InitialDatabase.cs" />
-    <Compile Include="Migrations\8-DeviceNote.cs" />
     <Compile Include="Migrations\7-NetgearDevices.cs" />
     <Compile Include="Migrations\6-NetgearStats.cs" />
     <Compile Include="Migrations\5-ThisYearsTestResultsView.cs" />
@@ -58,6 +57,7 @@
     <Compile Include="Migrations\3-ThisWeeksTestResultsView.cs" />
     <Compile Include="Migrations\2-TodaysTestResultsView.cs" />
     <Compile Include="Migrations\1-FullTestResultInfo.cs" />
+    <Compile Include="Migrations\8-DeviceDescription.cs" />
     <Compile Include="Migrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
