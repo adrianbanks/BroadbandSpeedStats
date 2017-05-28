@@ -1,0 +1,67 @@
+﻿@Master['master.html']
+
+@Section['MainContent']
+    <section class="content-header">
+      <h1>
+        Currently attached devices
+        <small id="testTime"></small>
+      </h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="dataTableArea" class="box">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-condensed table-hover" id="dataTable">
+                            <tbody>
+                            <tr><th>
+                                Name
+                            </th><th>
+                                MAC Address
+                            </th><th>
+                                IP Address
+                            </th><th>
+                                Connection Type
+                            </th><th>
+                                Description
+                            </th></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@EndSection
+
+@Section['PageScripts']
+
+<script>
+    $(document).ready(function () {
+        function populateDataTable(data, tableId, containerId) {
+            var table = $('#' + tableId);
+
+            for (var i = 0; i < data.length; i++) {
+                var result = data[i];
+
+                table.find('tbody:last')
+                    .append('<tr><td>' + result.deviceName + '</td><td>' + result.macAddress + '</td><td>' + result.ipAddress + '</td><td>' + result.connectionType + '</td><td>' + result.description + '</td></tr>');
+            }
+
+            $('#' + containerId + ' .overlay').remove();
+        }
+
+        $.getJSON('/api/devices/CurrentlyAttachedDevices', function (data) {
+            console.log('Attached devices: ' + JSON.stringify(data));
+
+            populateDataTable(data, 'dataTable', 'dataTableArea');
+        });
+    });
+</script>
+
+@EndSection

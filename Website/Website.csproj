@@ -947,6 +947,7 @@
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Views\devices\current.html" />
     <Content Include="Views\right-sidebar.html" />
     <Content Include="Views\navbar.html" />
     <Content Include="Views\left-sidebar.html" />
@@ -962,9 +963,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionStringProvider.cs" />
+    <Compile Include="Modules\Api\Devices\QueryApiModule.cs" />
     <Compile Include="Modules\Api\Netgear\TrafficStatsApiModule.cs" />
     <Compile Include="Modules\Api\Netgear\AttachedDevicesApiModule.cs" />
     <Compile Include="Modules\Api\Speed\QueryApiModule.cs" />
+    <Compile Include="Modules\Devices\DevicesModule.cs" />
     <Compile Include="Modules\WebPageModule.cs" />
     <Compile Include="StartupInitialisation.cs" />
     <Content Include="Content\plugins\justgage\justgage-1.2.2.js" />
@@ -1040,7 +1043,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\bandwidth\" />
-    <Folder Include="Views\devices\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
